@@ -95,32 +95,36 @@ public class InGameState extends BasicGameState {
         AllowedMovementType currentMove = level.currentMove();
 
         if (upDown.contains(x, y)) {
+            if(level.player.state != 0)
+                return;
             if (currentMove.getUPDOWN() == 0) {
                 if(level.player.getY() - Tile.tileSize <0){
                     return;
                 }
-                level.player.setY(level.player.getY() - Tile.tileSize);
                 level.moves++;
+                level.player.moveTo(level.player.getX(),level.player.getY()-Tile.tileSize);
             } else {
                 if((level.player.getY() + Tile.tileSize)/Tile.tileSize > level.d-1){
                     return;
                 }
-                level.player.setY(level.player.getY() + Tile.tileSize);
+                level.player.moveTo(level.player.getX(),level.player.getY()+Tile.tileSize);
                 level.moves++;
             }
         } else if (leftRight.contains(x, y)) {
+            if(level.player.state != 0)
+                return;
             if (currentMove.getLEFTRIGHT() == 0) {
                 if(level.player.getX() - Tile.tileSize <0){
                     return;
                 }
-                level.player.setX(level.player.getX() - Tile.tileSize);
+                level.player.moveTo(level.player.getX()-Tile.tileSize,level.player.getY());
                 level.moves++;
             } else {
                 if((level.player.getX() + Tile.tileSize)/Tile.tileSize > level.d-1){
                     return;
                 }
-                level.player.setX(level.player.getX() + Tile.tileSize);
                 level.moves++;
+                level.player.moveTo(level.player.getX()+Tile.tileSize,level.player.getY());
             }
         }
 

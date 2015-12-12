@@ -38,5 +38,5 @@ public abstract class Tile {
         return movementType;
     }
 
-    public abstract void steppedOn(InGameState state);
+    public abstract void steppedOn(Level level);
 }

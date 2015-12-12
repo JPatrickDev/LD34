@@ -50,6 +50,7 @@ public class Level {
         if(player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y){
             parent.nextLevel();
         }
+        player.update(this);
     }
 
     public static Level load(String path) throws IOException {
@@ -73,8 +74,8 @@ public class Level {
             TileType tType = TileType.values()[type];
             Tile t = null;
             switch(tType){
-                case BASIC: t = new BasicTile(AllowedMovementType.values()[move]);
-                case FLING: t = new FlingTile(AllowedMovementType.values()[move]);
+                case BASIC: t = new BasicTile(AllowedMovementType.values()[move]); break;
+                case FLING: t = new FlingTile(AllowedMovementType.values()[move]);break;
             }
             tiles[i] = t;
             i++;
@@ -86,6 +87,9 @@ public class Level {
         return level;
     }
 
+    public void playerMoved(int nX,int nY){
+        tiles[(nX/Tile.tileSize) + (nY/Tile.tileSize) * d].steppedOn(this);
+    }
     private void setStartEnd(Point start, Point end) {
         this.start = start;
         this.end = end;
