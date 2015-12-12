@@ -17,3 +17,14 @@
     - Move counter doesn't increase for a illegal move/
     - Sound effect when an illegal move is attempted
 
+- Timer
+    - Star rating combines time taken with the moves taken
+- Level select screen
+    - Unlock two levels at a time so you can skip a difficult one
+- Hints?
+    - Hint coins or something
+        - Highlights part of the path
+            - Using more than one can reveal the whole path?
+- Smooth movements
+    - "Pokemon" movement - Fake smooth movement
+- Center the map on the screen

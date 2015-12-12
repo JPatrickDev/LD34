@@ -1,5 +1,7 @@
 package me.jack.LD34.Level;
 
+import me.jack.LD34.Level.Tiles.BasicTile;
+import me.jack.LD34.Level.Tiles.FlingTile;
 import me.jack.LD34.States.InGameState;
 import org.newdawn.slick.Graphics;
 
@@ -26,7 +28,7 @@ public class Level {
         this.d = d;
         tiles = new Tile[d * d];
         for (int i = 0; i != d * d; i++) {
-            tiles[i] = new Tile(TileType.BASIC, AllowedMovementType.DOWN_LEFT);
+            tiles[i] = new BasicTile(AllowedMovementType.DOWN_LEFT);
         }
     }
 
@@ -68,7 +70,12 @@ public class Level {
             String[] split = line.split(":");
             int type = Integer.parseInt(split[0]);
             int move = Integer.parseInt(split[1]);
-            Tile t = new Tile(TileType.values()[type], AllowedMovementType.values()[move]);
+            TileType tType = TileType.values()[type];
+            Tile t = null;
+            switch(tType){
+                case BASIC: t = new BasicTile(AllowedMovementType.values()[move]);
+                case FLING: t = new FlingTile(AllowedMovementType.values()[move]);
+            }
             tiles[i] = t;
             i++;
         }
