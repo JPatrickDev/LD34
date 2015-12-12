@@ -38,7 +38,6 @@ public class InGameState extends BasicGameState {
 
     Image[] buttons = new Image[4];
 
-
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
@@ -69,23 +68,23 @@ public class InGameState extends BasicGameState {
     Rectangle upDown, leftRight;
 
     public void drawButtons(Graphics g) {
-        int y = level.d * Tile.tileSize;
+        int y = 260;
         AllowedMovementType currentMove = level.currentMove();
         g.setColor(Color.black);
         if(currentMove == AllowedMovementType.NONE){
             g.drawString("-", 64, y + 64);
             g.drawString("-", 272 + 64, y + 64);
         }else {
-            g.drawImage(buttons[currentMove.getUPDOWN()],0,y);
-            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2],96,y);
+            g.drawImage(buttons[currentMove.getUPDOWN()],0,400-64);
+            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2],96,400-64);
             if (upDown == null) {
-                upDown = new Rectangle(0, y, 64, 64);
-                leftRight = new Rectangle(96,y,64,64);
+                upDown = new Rectangle(0,400-64, 64, 64);
+                leftRight = new Rectangle(96,400-64,64,64);
             }
         }
         g.setColor(Color.white);
-        g.drawString("Moves: " + level.moves,0,y + 136);
-        g.drawString("Level: " + levelPos,0,y+150);
+        g.drawString("Moves: " + level.moves,0,400-80);
+        g.drawString("Level: " + levelPos,300,400-80);
     }
 
     @Override

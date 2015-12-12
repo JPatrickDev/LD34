@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="854910c5-3e1d-41b2-9bd1-2a093025f49c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/downleft.png" afterPath="$PROJECT_DIR$/res/downleft.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/downright.png" afterPath="$PROJECT_DIR$/res/downright.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/upleft.png" afterPath="$PROJECT_DIR$/res/upleft.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/upright.png" afterPath="$PROJECT_DIR$/res/upright.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/States/InGameState.class" afterPath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/States/InGameState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/Level/Level$1.class" afterPath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/Level/Level$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/Level/Level.class" afterPath="$PROJECT_DIR$/out/production/LD34/me/jack/LD34/Level/Level.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/LD34/States/InGameState.java" afterPath="$PROJECT_DIR$/src/me/jack/LD34/States/InGameState.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" afterPath="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java" afterPath="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo.txt" afterPath="$PROJECT_DIR$/todo.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LD34.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,11 +60,11 @@
         <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#538#549#0" expanded="true" />
-                <element signature="e#610#624#0" expanded="true" />
+                <element signature="e#614#625#0" expanded="true" />
+                <element signature="e#686#700#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,25 +96,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todo.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/todo.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.7199341">
+              <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InGameState.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InGameState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/States/InGameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53212523">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4594#4595#0" expanded="true" />
                 <element signature="e#4618#4619#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TPTargetTile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -196,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Main.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/BasicTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/LD34.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/AllowedMovementType.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/WallTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/FlingTile.java" />
@@ -206,9 +218,10 @@
         <option value="$PROJECT_DIR$/levels/1.txt" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Player.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/MoveableTile.java" />
-        <option value="$PROJECT_DIR$/todo.txt" />
-        <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" />
         <option value="$PROJECT_DIR$/src/me/jack/LD34/States/InGameState.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" />
+        <option value="$PROJECT_DIR$/todo.txt" />
       </list>
     </option>
   </component>
@@ -723,8 +736,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#538#549#0" expanded="true" />
-            <element signature="e#610#624#0" expanded="true" />
+            <element signature="e#614#625#0" expanded="true" />
+            <element signature="e#686#700#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -852,16 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/FlingTile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -948,26 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/todo.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#538#549#0" expanded="true" />
-            <element signature="e#610#624#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/AllowedMovementType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42009884">
@@ -976,15 +959,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Tiles/TPTargetTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/States/InGameState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53212523">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4594#4595#0" expanded="true" />
             <element signature="e#4618#4619#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="39" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#614#625#0" expanded="true" />
+            <element signature="e#686#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/todo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7199341">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

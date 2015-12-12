@@ -24,7 +24,7 @@ public class TPTargetTile extends Tile {
     public void render(Graphics g, int x, int y) {
         super.render(g, x, y);
         g.setColor(color);
-        g.drawRect(x * Tile.tileSize, y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
+        g.drawRect(x * Tile.tileSize, y * Tile.tileSize, Tile.tileSize-1, Tile.tileSize-1);
         g.setColor(Color.white);
     }
 

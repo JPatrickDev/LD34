@@ -2,9 +2,11 @@ package me.jack.LD34.Level;
 
 import me.jack.LD34.Level.Tiles.*;
 import me.jack.LD34.States.InGameState;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.w3c.dom.css.Rect;
+import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 
 
 import java.awt.*;
@@ -38,9 +40,21 @@ public class Level {
         }
     }
 
+    org.newdawn.slick.Image exit;
+
+    int cX = -1, cY = -1;
 
     public void render(Graphics g) {
+        if (exit == null)
+            exit = ImageUtil.loadImage("res/exit.png");
         //g.scale(2f,2f);
+        if (cX == -1 && cY == -1) {
+            int mW = d * Tile.tileSize;
+            int mH = d * Tile.tileSize;
+            cX = 200 - (mW / 2);
+            cY = 160 - (mH / 2);
+        }
+        g.translate(cX,cY);
         for (int x = 0; x != d; x++) {
             for (int y = 0; y != d; y++) {
                 tiles[x + y * d].render(g, x, y);
@@ -51,9 +65,10 @@ public class Level {
             t.render(g, 0, 0);
         g.fillRect(start.x * Tile.tileSize, start.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
         g.fillRect(end.x * Tile.tileSize, end.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
-
+        g.drawImage(exit, end.x * Tile.tileSize, end.y * Tile.tileSize);
         player.render(g);
-     //   g.resetTransform();
+        g.resetTransform();
+        //   g.resetTransform();
     }
 
     public void update(InGameState parent) {
@@ -65,7 +80,7 @@ public class Level {
         player.update(this);
     }
 
-    public boolean canMove(int nX, int nY,int oX,int oY) {
+    public boolean canMove(int nX, int nY, int oX, int oY) {
         if (nY < 0) {
             return false;
         }
@@ -88,13 +103,13 @@ public class Level {
             Rectangle mtR = new Rectangle(t.x, t.y, Tile.tileSize, Tile.tileSize);
             if (mtR.intersects(hitbox)) {
                 int dir = -1;
-                if(nX > oX)
+                if (nX > oX)
                     dir = 2;
-                else if(nX < oX)
+                else if (nX < oX)
                     dir = 0;
-                else if(nY > oY){
+                else if (nY > oY) {
                     dir = 3;
-                }else if(nY< oY)
+                } else if (nY < oY)
                     dir = 1;
                 t.move(dir);
                 return false;

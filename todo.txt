@@ -11,7 +11,7 @@
     - Wall/
 - Tiles show the allowed movements on them/
         - Small arrows?/
-            - Make arrows smaller?
+            - Make arrows smaller?/
 - Move counter/
     - Star rating depending on how close to the min moves you are
 
@@ -30,10 +30,10 @@
                 - Each coin reveals X tiles in the path
 - Smooth movements/
     - "Pokemon" movement - Fake smooth movement/
-- Center the map on the screen
+- Center the map on the screen/
 
 Art for everything
-- Buttons
+- Buttons/
 - Player
 - Better tile art
     - Animated Fling and TP Tiles
