@@ -83,6 +83,7 @@ public class InGameState extends BasicGameState {
             leftRight = new Rectangle(272, y, 128, 128);
         }
         g.drawString("Moves: " + level.moves,0,y + 136);
+        g.drawString("Level: " + levelPos,0,y+150);
     }
 
     @Override

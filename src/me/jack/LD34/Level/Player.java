@@ -17,7 +17,7 @@ public class Player {
         this.y = y;
     }
 
-    public void render(Graphics g){
+    public void render(Graphics g) {
         g.setColor(Color.orange);
         g.fillRect(x, y, Tile.tileSize, Tile.tileSize);
         g.setColor(Color.white);
@@ -26,34 +26,87 @@ public class Player {
     //0 = standing, 1 = moving
     private Point movingTo = null;
     public int state = 0;
-    public void update(Level level){
-        if(movingTo != null && state == 1){
+    boolean fling = false;
+    int fDir = -1;
+
+    public void fling(int dir) {
+        fling = true;
+        fDir = dir;
+        setFTarget();
+    }
+
+    private void setFTarget() {
+        if (fDir == 0) {
+            movingTo = new Point(x - Tile.tileSize, y);
+        } else if (fDir == 1) {
+            movingTo = new Point(x, y - Tile.tileSize);
+        } else if (fDir == 2) {
+            movingTo = new Point(x + Tile.tileSize, y);
+        } else {
+            movingTo = new Point(x, y + Tile.tileSize);
+        }
+        state = 1;
+    }
+
+    public void update(Level level) {
+        if (movingTo != null && state == 1) {
             int tX = movingTo.x;
             int tY = movingTo.y;
-            if(tX > x){
-                x++;
-            }else if(tX < x){
-                x--;
-            }else if(tY > y){
-                y++;
-            }else{
-                y--;
+            if (tX > x) {
+                if(level.canMove(x+2,y))
+                x += 2;
+                else {
+                    state = 0;
+                    movingTo = null;
+                    fling = false;
+                    fDir = -1;
+                }
+            } else if (tX < x) {
+                if(level.canMove(x-2,y))
+                x -= 2;
+                else {
+                    state = 0;
+                    movingTo = null;
+                    fling = false;
+                    fDir = -1;
+                }
+            } else if (tY > y) {
+                if(level.canMove(x,y+2))
+                y += 2;
+                else {
+                    state = 0;
+                    movingTo = null;
+                    fling = false;
+                    fDir = -1;
+                }
+            } else {
+                if(level.canMove(x,y-2))
+                y -= 2;
+                else {
+                    state = 0;
+                    movingTo = null;
+                    fling = false;
+                    fDir = -1;
+                }
             }
 
-            if(tX == x && tY == y){
+            if (tX == x && tY == y) {
                 movingTo = null;
                 state = 0;
-                level.playerMoved(x,y);
+                level.playerMoved(x, y);
+                if (fling) {
+                    setFTarget();
+                }
             }
 
         }
     }
 
-    public void setX(int x){
+    public void setX(int x) {
         this.x = x;
     }
 
-    public void setY(int y){
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -66,7 +119,7 @@ public class Player {
     }
 
     public void moveTo(int x, int y) {
-        movingTo = new Point(x,y);
+        movingTo = new Point(x, y);
         state = 1;
     }
 }

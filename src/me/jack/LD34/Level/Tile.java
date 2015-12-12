@@ -17,12 +17,17 @@ public abstract class Tile {
     public static final int tileSize = 32;
 
     public static Image[] tiles = new Image[4];
-
+    public static Image[] fTiles = new Image[4];
     public static void init(){
         tiles[0] = ImageUtil.loadImage("res/upleft.png");
         tiles[1] = ImageUtil.loadImage("res/upright.png");
         tiles[2] = ImageUtil.loadImage("res/downleft.png");
         tiles[3] = ImageUtil.loadImage("res/downright.png");
+
+        fTiles[0] = ImageUtil.loadImage("res/flingleft.png");
+        fTiles[1] = ImageUtil.loadImage("res/flingup.png");
+        fTiles[2] = ImageUtil.loadImage("res/flightright.png");
+        fTiles[3] = ImageUtil.loadImage("res/flingdown.png");
     }
 
     public Tile(TileType type, AllowedMovementType movementType) {

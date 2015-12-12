@@ -46,13 +46,28 @@ public class Level {
         player.render(g);
     }
 
-    public void update(InGameState parent){
-        if(player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y){
+    public void update(InGameState parent) {
+        if (player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y) {
             parent.nextLevel();
         }
         player.update(this);
     }
 
+    public boolean canMove(int nX,int nY){
+        if(nY <0){
+            return false;
+        }
+        if(nY> (d-1) * Tile.tileSize){
+            return false;
+        }
+        if(nX <0){
+            return false;
+        }
+        if(nX> (d-1) * Tile.tileSize){
+            return false;
+        }
+        return true;
+    }
     public static Level load(String path) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
         int d = Integer.parseInt(reader.readLine());
@@ -73,9 +88,13 @@ public class Level {
             int move = Integer.parseInt(split[1]);
             TileType tType = TileType.values()[type];
             Tile t = null;
-            switch(tType){
-                case BASIC: t = new BasicTile(AllowedMovementType.values()[move]); break;
-                case FLING: t = new FlingTile(AllowedMovementType.values()[move]);break;
+            switch (tType) {
+                case BASIC:
+                    t = new BasicTile(AllowedMovementType.values()[move]);
+                    break;
+                case FLING:
+                    t = new FlingTile(AllowedMovementType.values()[move], Integer.parseInt(split[2]));
+                    break;
             }
             tiles[i] = t;
             i++;
@@ -87,13 +106,14 @@ public class Level {
         return level;
     }
 
-    public void playerMoved(int nX,int nY){
-        tiles[(nX/Tile.tileSize) + (nY/Tile.tileSize) * d].steppedOn(this);
+    public void playerMoved(int nX, int nY) {
+        tiles[(nX / Tile.tileSize) + (nY / Tile.tileSize) * d].steppedOn(this);
     }
+
     private void setStartEnd(Point start, Point end) {
         this.start = start;
         this.end = end;
-        player = new Player(start.x*Tile.tileSize,start.y * Tile.tileSize);
+        player = new Player(start.x * Tile.tileSize, start.y * Tile.tileSize);
     }
 
     public void setTiles(Tile[] tiles) {
@@ -101,7 +121,7 @@ public class Level {
     }
 
 
-    public AllowedMovementType currentMove(){
-        return tiles[(player.getX()/Tile.tileSize) + (player.getY()/Tile.tileSize) * d].getMoves();
+    public AllowedMovementType currentMove() {
+        return tiles[(player.getX() / Tile.tileSize) + (player.getY() / Tile.tileSize) * d].getMoves();
     }
 }
