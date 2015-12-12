@@ -6,6 +6,7 @@
 - Tile types
     - Fling/
     - Moveable/
+        - TP Tile/Fling Tile support?
     - TP/
     - Wall/
 - Tiles show the allowed movements on them/

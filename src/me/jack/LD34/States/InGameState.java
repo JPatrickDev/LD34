@@ -3,14 +3,16 @@ package me.jack.LD34.States;
 import me.jack.LD34.Level.AllowedMovementType;
 import me.jack.LD34.Level.Level;
 import me.jack.LD34.Level.Tile;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +29,14 @@ public class InGameState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         Tile.init();
+        buttons[0] = ImageUtil.loadImage("res/upbutton.png");
+        buttons[1] = ImageUtil.loadImage("res/downbutton.png");
+        buttons[2] = ImageUtil.loadImage("res/leftbutton.png");
+        buttons[3] = ImageUtil.loadImage("res/rightbutton.png");
     }
+
+
+    Image[] buttons = new Image[4];
 
 
     @Override
@@ -61,30 +70,17 @@ public class InGameState extends BasicGameState {
 
     public void drawButtons(Graphics g) {
         int y = level.d * Tile.tileSize;
-        g.fillRect(0, y, 128, 128);
-
-        g.fillRect(272, y, 128, 128);
-
         AllowedMovementType currentMove = level.currentMove();
         g.setColor(Color.black);
         if(currentMove == AllowedMovementType.NONE){
             g.drawString("-", 64, y + 64);
             g.drawString("-", 272 + 64, y + 64);
         }else {
-            if (currentMove.getUPDOWN() == 0) {
-                g.drawString("UP", 64, y + 64);
-            } else {
-                g.drawString("DOWN", 64, y + 64);
-            }
-            if (currentMove.getLEFTRIGHT() == 0) {
-                g.drawString("LEFT", 272 + 64, y + 64);
-            } else {
-                g.drawString("RIGHT", 272 + 64, y + 64);
-            }
-            g.setColor(Color.white);
+            g.drawImage(buttons[currentMove.getUPDOWN()],0,y);
+            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2],96,y);
             if (upDown == null) {
-                upDown = new Rectangle(0, y, 128, 128);
-                leftRight = new Rectangle(272, y, 128, 128);
+                upDown = new Rectangle(0, y, 64, 64);
+                leftRight = new Rectangle(96,y,64,64);
             }
         }
         g.setColor(Color.white);

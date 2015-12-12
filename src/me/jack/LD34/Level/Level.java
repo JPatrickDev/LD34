@@ -40,6 +40,7 @@ public class Level {
 
 
     public void render(Graphics g) {
+        //g.scale(2f,2f);
         for (int x = 0; x != d; x++) {
             for (int y = 0; y != d; y++) {
                 tiles[x + y * d].render(g, x, y);
@@ -52,6 +53,7 @@ public class Level {
         g.fillRect(end.x * Tile.tileSize, end.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
 
         player.render(g);
+     //   g.resetTransform();
     }
 
     public void update(InGameState parent) {
