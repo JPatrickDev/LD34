@@ -2,7 +2,7 @@
 - Software buttons that allow movement/
     - Shows the possible move/
 - start and end tiles/
-- Moves to next level when the end tile is reached
+- Moves to next level when the end tile is reached/
 - Tile types
     - Fling
     - Moveable

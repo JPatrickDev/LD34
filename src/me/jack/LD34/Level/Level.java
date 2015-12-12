@@ -1,5 +1,6 @@
 package me.jack.LD34.Level;
 
+import me.jack.LD34.States.InGameState;
 import org.newdawn.slick.Graphics;
 
 import java.awt.*;
@@ -39,6 +40,12 @@ public class Level {
         g.fillRect(end.x * Tile.tileSize, end.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
 
         player.render(g);
+    }
+
+    public void update(InGameState parent){
+        if(player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y){
+            parent.nextLevel();
+        }
     }
 
     public static Level load(String path) throws IOException {

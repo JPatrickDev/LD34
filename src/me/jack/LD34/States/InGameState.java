@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,6 +22,8 @@ public class InGameState extends BasicGameState {
 
     Level level;
 
+    int levelPos = 0;
+
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         Tile.init();
@@ -30,11 +33,16 @@ public class InGameState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
-        //  level = new Level(5);
+        nextLevel();
+    }
+
+    public void nextLevel() {
+        levelPos++;
         try {
-            level = Level.load("levels/1.txt");
+            level = Level.load("levels/" + levelPos + ".txt");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Level " + levelPos + " not found, exiting");
+            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,15 +93,15 @@ public class InGameState extends BasicGameState {
         AllowedMovementType currentMove = level.currentMove();
 
         if (upDown.contains(x, y)) {
-            if(currentMove.getUPDOWN() == 0){
+            if (currentMove.getUPDOWN() == 0) {
                 level.player.setY(level.player.getY() - Tile.tileSize);
-            }else{
-                level.player.setY(level.player.getY() +Tile.tileSize);
+            } else {
+                level.player.setY(level.player.getY() + Tile.tileSize);
             }
         } else if (leftRight.contains(x, y)) {
-            if(currentMove.getLEFTRIGHT() == 0){
+            if (currentMove.getLEFTRIGHT() == 0) {
                 level.player.setX(level.player.getX() - Tile.tileSize);
-            }else{
+            } else {
                 level.player.setX(level.player.getX() + Tile.tileSize);
             }
         }
@@ -102,7 +110,9 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+        if (level != null) {
+            level.update(this);
+        }
     }
 
     @Override
