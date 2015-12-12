@@ -13,7 +13,10 @@
         - Small arrows?/
             - Make arrows smaller?/
 - Move counter/
-    - Star rating depending on how close to the min moves you are
+    - Star rating depending on how close to the min moves you are/
+        - Done in min moves: 3 star/
+            - needed <= 10% more than the min : 2/
+            - needed > 10% : 1/
 
 - Can't make a move that takes you out of the map/
     - Move counter doesn't increase for a illegal move/
@@ -21,6 +24,7 @@
 
 - Timer
     - Star rating combines time taken with the moves taken
+
 - Level select screen
     - Unlock two levels at a time so you can skip a difficult one
 - Hints?

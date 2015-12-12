@@ -1,6 +1,7 @@
 package me.jack.LD34;
 
 import me.jack.LD34.States.InGameState;
+import me.jack.LD34.States.LevelEndState;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
@@ -16,7 +17,8 @@ public class LD34 extends StateBasedGame{
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        gameContainer.setShowFPS(false);
+     //   gameContainer.setShowFPS(false);
         this.addState(new InGameState());
+        this.addState(new LevelEndState());
     }
 }

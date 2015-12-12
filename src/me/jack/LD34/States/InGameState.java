@@ -37,14 +37,20 @@ public class InGameState extends BasicGameState {
 
 
     Image[] buttons = new Image[4];
-
+    boolean levelOver = false;
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
+        levelOver = false;
         nextLevel();
     }
 
+    public void levelOver(){
+        levelOver = true;
+    }
+
     public void nextLevel() {
+        System.out.println("Loading: " + (levelPos+1));
         levelPos++;
         try {
             level = Level.load("levels/" + levelPos + ".txt");
@@ -136,6 +142,12 @@ public class InGameState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         if (level != null) {
             level.update(this);
+            if(levelOver){
+                LevelEndState.movesTaken = level.moves;
+                LevelEndState.minMoves = 7;
+                LevelEndState.state = this;
+                stateBasedGame.enterState(2);
+            }
         }
     }
 

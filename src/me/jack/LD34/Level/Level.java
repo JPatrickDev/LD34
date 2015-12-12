@@ -73,7 +73,8 @@ public class Level {
 
     public void update(InGameState parent) {
         if (player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y) {
-            parent.nextLevel();
+           // parent.nextLevel();
+            parent.levelOver();
         }
         for (MoveableTile t : moveableTiles)
             t.update(this);
