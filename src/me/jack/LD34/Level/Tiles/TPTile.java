@@ -8,6 +8,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.tiled.TileSet;
+import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 
 import java.awt.*;
 
@@ -18,6 +20,7 @@ public class TPTile extends Tile{
 
     private Point target;
     private Image customTile = null;
+    private Animation portalAnim = null;
     Color darkerC = Color.decode("#57007F");
     Color lighterC = Color.decode("#AE00FF");
     public TPTile(Point target, Color color) {
@@ -25,6 +28,7 @@ public class TPTile extends Tile{
         this.target = target;
         try {
             customTile = createCustomTile(color);
+            portalAnim = new Animation(new SpriteSheet(ImageUtil.loadImage("res/tp_anim_sheet.png"),32,32),50);
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -54,6 +58,7 @@ public class TPTile extends Tile{
     @Override
     public void render(org.newdawn.slick.Graphics g, int x, int y) {
         g.drawImage(customTile, x * Tile.tileSize, y * Tile.tileSize);
+        portalAnim.draw(x* Tile.tileSize,y*Tile.tileSize);
     }
 
     @Override

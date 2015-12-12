@@ -36,7 +36,9 @@ Art for everything
 - Buttons/
 - Player
 - Better tile art
-    - Animated Fling and TP Tiles
+    - Animated
+        -Fling
+        -TP Tiles/
 - Walls
 
 Sound
