@@ -4,9 +4,9 @@
 - start and end tiles/
 - Moves to next level when the end tile is reached/
 - Tile types
-    - Fling
+    - Fling/
     - Moveable
-    - TP
+    - TP/
 - Tiles show the allowed movements on them/
         - Small arrows?/
             - Make arrows smaller?
@@ -25,6 +25,21 @@
     - Hint coins or something
         - Highlights part of the path
             - Using more than one can reveal the whole path?
-- Smooth movements
-    - "Pokemon" movement - Fake smooth movement
+                - Each coin reveals X tiles in the path
+- Smooth movements/
+    - "Pokemon" movement - Fake smooth movement/
 - Center the map on the screen
+
+Art for everything
+- Buttons
+- Player
+- Better tile art
+    - Animated Fling and TP Tiles
+- Walls
+
+Sound
+- Movement
+- Can't move
+- TP
+- Fling
+- Level complete

@@ -94,6 +94,7 @@ public class Player {
                 movingTo = null;
                 state = 0;
                 level.playerMoved(x, y);
+                level.moves++;
                 if (fling) {
                     setFTarget();
                 }

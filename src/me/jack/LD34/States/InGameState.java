@@ -102,14 +102,14 @@ public class InGameState extends BasicGameState {
                 if(level.player.getY() - Tile.tileSize <0){
                     return;
                 }
-                level.moves++;
+            //    level.moves++;
                 level.player.moveTo(level.player.getX(),level.player.getY()-Tile.tileSize);
             } else {
                 if((level.player.getY() + Tile.tileSize)/Tile.tileSize > level.d-1){
                     return;
                 }
                 level.player.moveTo(level.player.getX(),level.player.getY()+Tile.tileSize);
-                level.moves++;
+             //   level.moves++;
             }
         } else if (leftRight.contains(x, y)) {
             if(level.player.state != 0)
@@ -119,12 +119,12 @@ public class InGameState extends BasicGameState {
                     return;
                 }
                 level.player.moveTo(level.player.getX()-Tile.tileSize,level.player.getY());
-                level.moves++;
+             //   level.moves++;
             } else {
                 if((level.player.getX() + Tile.tileSize)/Tile.tileSize > level.d-1){
                     return;
                 }
-                level.moves++;
+                //level.moves++;
                 level.player.moveTo(level.player.getX()+Tile.tileSize,level.player.getY());
             }
         }

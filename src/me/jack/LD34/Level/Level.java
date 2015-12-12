@@ -2,8 +2,12 @@ package me.jack.LD34.Level;
 
 import me.jack.LD34.Level.Tiles.BasicTile;
 import me.jack.LD34.Level.Tiles.FlingTile;
+import me.jack.LD34.Level.Tiles.TPTargetTile;
+import me.jack.LD34.Level.Tiles.TPTile;
 import me.jack.LD34.States.InGameState;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+
 
 import java.awt.*;
 import java.io.*;
@@ -53,21 +57,22 @@ public class Level {
         player.update(this);
     }
 
-    public boolean canMove(int nX,int nY){
-        if(nY <0){
+    public boolean canMove(int nX, int nY) {
+        if (nY < 0) {
             return false;
         }
-        if(nY> (d-1) * Tile.tileSize){
+        if (nY > (d - 1) * Tile.tileSize) {
             return false;
         }
-        if(nX <0){
+        if (nX < 0) {
             return false;
         }
-        if(nX> (d-1) * Tile.tileSize){
+        if (nX > (d - 1) * Tile.tileSize) {
             return false;
         }
         return true;
     }
+
     public static Level load(String path) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
         int d = Integer.parseInt(reader.readLine());
@@ -94,6 +99,12 @@ public class Level {
                     break;
                 case FLING:
                     t = new FlingTile(AllowedMovementType.values()[move], Integer.parseInt(split[2]));
+                    break;
+                case TP:
+                    t = new TPTile(new Point(Integer.parseInt(split[2]), Integer.parseInt(split[3])), Color.decode(split[4]));
+                    break;
+                case TPTARGET:
+                    t = new TPTargetTile(AllowedMovementType.values()[move], Color.decode(split[2]));
                     break;
             }
             tiles[i] = t;
@@ -123,5 +134,10 @@ public class Level {
 
     public AllowedMovementType currentMove() {
         return tiles[(player.getX() / Tile.tileSize) + (player.getY() / Tile.tileSize) * d].getMoves();
+    }
+
+    public void tpPlayer(Point target) {
+        player.setX(target.x * Tile.tileSize);
+        player.setY(target.y * Tile.tileSize);
     }
 }

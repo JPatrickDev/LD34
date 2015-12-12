@@ -16,6 +16,7 @@ public class LD34 extends StateBasedGame{
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
+        gameContainer.setShowFPS(false);
         this.addState(new InGameState());
     }
 }

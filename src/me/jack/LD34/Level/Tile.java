@@ -18,7 +18,10 @@ public abstract class Tile {
 
     public static Image[] tiles = new Image[4];
     public static Image[] fTiles = new Image[4];
-    public static void init(){
+
+    public static Image tpTile, tpTarget;
+
+    public static void init() {
         tiles[0] = ImageUtil.loadImage("res/upleft.png");
         tiles[1] = ImageUtil.loadImage("res/upright.png");
         tiles[2] = ImageUtil.loadImage("res/downleft.png");
@@ -28,6 +31,10 @@ public abstract class Tile {
         fTiles[1] = ImageUtil.loadImage("res/flingup.png");
         fTiles[2] = ImageUtil.loadImage("res/flightright.png");
         fTiles[3] = ImageUtil.loadImage("res/flingdown.png");
+
+        tpTile = ImageUtil.loadImage("res/tptile.png");
+        tpTarget = ImageUtil.loadImage("res/tptarget.png");
+
     }
 
     public Tile(TileType type, AllowedMovementType movementType) {
@@ -36,7 +43,7 @@ public abstract class Tile {
     }
 
     public void render(Graphics g, int x, int y) {
-        g.drawImage(tiles[movementType.getID()],x * Tile.tileSize,y*Tile.tileSize);
+        g.drawImage(tiles[movementType.getID()], x * Tile.tileSize, y * Tile.tileSize);
     }
 
     public AllowedMovementType getMoves() {
