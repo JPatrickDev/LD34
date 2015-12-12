@@ -53,6 +53,7 @@ public class InGameState extends BasicGameState {
         if (level != null) {
             level.render(graphics);
             drawButtons(graphics);
+
         }
     }
 
@@ -81,6 +82,7 @@ public class InGameState extends BasicGameState {
             upDown = new Rectangle(0, y, 128, 128);
             leftRight = new Rectangle(272, y, 128, 128);
         }
+        g.drawString("Moves: " + level.moves,0,y + 136);
     }
 
     @Override
@@ -94,15 +96,31 @@ public class InGameState extends BasicGameState {
 
         if (upDown.contains(x, y)) {
             if (currentMove.getUPDOWN() == 0) {
+                if(level.player.getY() - Tile.tileSize <0){
+                    return;
+                }
                 level.player.setY(level.player.getY() - Tile.tileSize);
+                level.moves++;
             } else {
+                if((level.player.getY() + Tile.tileSize)/Tile.tileSize > level.d-1){
+                    return;
+                }
                 level.player.setY(level.player.getY() + Tile.tileSize);
+                level.moves++;
             }
         } else if (leftRight.contains(x, y)) {
             if (currentMove.getLEFTRIGHT() == 0) {
+                if(level.player.getX() - Tile.tileSize <0){
+                    return;
+                }
                 level.player.setX(level.player.getX() - Tile.tileSize);
+                level.moves++;
             } else {
+                if((level.player.getX() + Tile.tileSize)/Tile.tileSize > level.d-1){
+                    return;
+                }
                 level.player.setX(level.player.getX() + Tile.tileSize);
+                level.moves++;
             }
         }
 

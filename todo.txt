@@ -10,5 +10,10 @@
 - Tiles show the allowed movements on them/
         - Small arrows?/
             - Make arrows smaller?
+- Move counter/
+    - Star rating depending on how close to the min moves you are
 
+- Can't make a move that takes you out of the map/
+    - Move counter doesn't increase for a illegal move/
+    - Sound effect when an illegal move is attempted
 

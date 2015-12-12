@@ -20,6 +20,8 @@ public class Level {
 
     private Point start, end;
 
+    public int moves = 0;
+
     public Level(int d) {
         this.d = d;
         tiles = new Tile[d * d];
@@ -89,6 +91,6 @@ public class Level {
 
 
     public AllowedMovementType currentMove(){
-        return tiles[player.getX()/Tile.tileSize + player.getY()/Tile.tileSize * d].getMoves();
+        return tiles[(player.getX()/Tile.tileSize) + (player.getY()/Tile.tileSize) * d].getMoves();
     }
 }
