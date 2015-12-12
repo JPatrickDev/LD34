@@ -1,0 +1,41 @@
+Theme: Two Button Control + Growing
+Can use both or either
+
+Puzzler
+- Only two buttons, but what the buttons do changes?
+- Move something towards an exit?
+- Grows over time?
+    - Speed aspect?
+        - Got to get to the end before you grow too much?
+- As you grow the map changes to reflect you getting bigger?
+    - Spore type thing
+- Buttons don't have to be for movement as such
+    - Indirectly control your movement
+        - Tilting the board
+            - Reversing gravity
+-----------------------------
+- Two buttons, both movement
+- Have to navigate from one side to the other
+    - Lowest number of moves
+- The tile you are standing on decides what each button does(one moves up or down, one moves left or right)
+    - Pokemon team rocket base type thing where some tiles make you move until you hit a wall
+    - Some tiles can be moved by walking into them
+    - Some tiles tp you?
+- Level design going to be very difficult
+    - Need to have a good number of levels
+        - At least 10
+- Software buttons that show the possible moves
+------------------------------
+
+
+
+Platformer
+    - Infinite Runner
+        - Map has some floor in the sky, have to reverse gravity
+            - 1 button to flip gravity, one to attack
+                - If you hit a enemy and you are smaller it kills you
+                    - If you are bigger you survive but shrink
+                        - You grow over time and can get pickups to speed it up
+                - Ranged weapons
+        - Might be difficult to make challenging/ actually fun
+            - Flip gravity, attack, flip gravity, attack, repeat probably a bit boring after a while
