@@ -4,6 +4,7 @@ import me.jack.LD34.Level.Tiles.*;
 import me.jack.LD34.States.InGameState;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.w3c.dom.css.Rect;
 
 
 import java.awt.*;
@@ -27,6 +28,7 @@ public class Level {
     public int moves = 0;
 
     ArrayList<Rectangle> hitboxes = new ArrayList<Rectangle>();
+    ArrayList<MoveableTile> moveableTiles = new ArrayList<MoveableTile>();
 
     public Level(int d) {
         this.d = d;
@@ -44,6 +46,8 @@ public class Level {
             }
         }
 
+        for (MoveableTile t : moveableTiles)
+            t.render(g, 0, 0);
         g.fillRect(start.x * Tile.tileSize, start.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
         g.fillRect(end.x * Tile.tileSize, end.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
 
@@ -54,10 +58,12 @@ public class Level {
         if (player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y) {
             parent.nextLevel();
         }
+        for (MoveableTile t : moveableTiles)
+            t.update(this);
         player.update(this);
     }
 
-    public boolean canMove(int nX, int nY) {
+    public boolean canMove(int nX, int nY,int oX,int oY) {
         if (nY < 0) {
             return false;
         }
@@ -76,6 +82,22 @@ public class Level {
             if (hitbox.intersects(rt))
                 return false;
 
+        for (MoveableTile t : moveableTiles) {
+            Rectangle mtR = new Rectangle(t.x, t.y, Tile.tileSize, Tile.tileSize);
+            if (mtR.intersects(hitbox)) {
+                int dir = -1;
+                if(nX > oX)
+                    dir = 2;
+                else if(nX < oX)
+                    dir = 0;
+                else if(nY > oY){
+                    dir = 3;
+                }else if(nY< oY)
+                    dir = 1;
+                t.move(dir);
+                return false;
+            }
+        }
         return true;
     }
 
@@ -115,10 +137,18 @@ public class Level {
                 case TPTARGET:
                     t = new TPTargetTile(AllowedMovementType.values()[move], Color.decode(split[2]));
                     break;
+
                 case WALL:
                     t = new WallTile();
-                    level.hitboxes.add(new Rectangle(x*Tile.tileSize, y * Tile.tileSize, Tile.tileSize, Tile.tileSize));
+                    level.hitboxes.add(new Rectangle(x * Tile.tileSize, y * Tile.tileSize, Tile.tileSize, Tile.tileSize));
                     break;
+                case MOVEABLE:
+                    t = new BasicTile(AllowedMovementType.values()[move]);
+                    MoveableTile tt = new MoveableTile(x * Tile.tileSize, y * Tile.tileSize);
+                    level.moveableTiles.add(tt);
+                    //  level.hitboxes.add(new Rectangle(x*Tile.tileSize, y * Tile.tileSize, Tile.tileSize, Tile.tileSize));
+                    break;
+
             }
             tiles[i] = t;
             i++;

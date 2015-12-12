@@ -53,7 +53,7 @@ public class Player {
             int tX = movingTo.x;
             int tY = movingTo.y;
             if (tX > x) {
-                if(level.canMove(x+2,y))
+                if(level.canMove(x+2,y,x,y))
                 x += 2;
                 else {
                     state = 0;
@@ -62,7 +62,7 @@ public class Player {
                     fDir = -1;
                 }
             } else if (tX < x) {
-                if(level.canMove(x-2,y))
+                if(level.canMove(x-2,y,x,y))
                 x -= 2;
                 else {
                     state = 0;
@@ -71,7 +71,7 @@ public class Player {
                     fDir = -1;
                 }
             } else if (tY > y) {
-                if(level.canMove(x,y+2))
+                if(level.canMove(x,y+2,x,y))
                 y += 2;
                 else {
                     state = 0;
@@ -80,7 +80,7 @@ public class Player {
                     fDir = -1;
                 }
             } else {
-                if(level.canMove(x,y-2))
+                if(level.canMove(x,y-2,x,y))
                 y -= 2;
                 else {
                     state = 0;

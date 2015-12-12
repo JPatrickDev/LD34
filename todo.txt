@@ -5,7 +5,7 @@
 - Moves to next level when the end tile is reached/
 - Tile types
     - Fling/
-    - Moveable
+    - Moveable/
     - TP/
     - Wall/
 - Tiles show the allowed movements on them/
