@@ -2,28 +2,38 @@ package me.jack.LD34.Level;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 
 /**
  * Created by Jack on 12/12/2015.
  */
-public class Tile{
+public class Tile {
 
     private TileType type;
     private AllowedMovementType movementType;
 
     public static final int tileSize = 32;
-    public Tile(TileType type,AllowedMovementType movementType){
+
+    public static Image[] tiles = new Image[4];
+
+    public static void init(){
+        tiles[0] = ImageUtil.loadImage("res/upleft.png");
+        tiles[1] = ImageUtil.loadImage("res/upright.png");
+        tiles[2] = ImageUtil.loadImage("res/downleft.png");
+        tiles[3] = ImageUtil.loadImage("res/downright.png");
+    }
+
+    public Tile(TileType type, AllowedMovementType movementType) {
         this.type = type;
         this.movementType = movementType;
     }
 
-    public void render(Graphics g,int x,int y){
-        if(type == TileType.BASIC)
-        g.setColor(Color.red);
-        else
-        g.setColor(Color.blue);
-        g.fillRect(x*tileSize,y*tileSize,tileSize,tileSize);
-        g.setColor(Color.white);
-        g.drawRect(x*tileSize,y*tileSize,tileSize,tileSize);
+    public void render(Graphics g, int x, int y) {
+        g.drawImage(tiles[movementType.getID()],x * Tile.tileSize,y*Tile.tileSize);
+    }
+
+    public AllowedMovementType getMoves() {
+        return movementType;
     }
 }
