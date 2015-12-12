@@ -4,7 +4,7 @@ package me.jack.LD34.Level;
  * Created by Jack on 12/12/2015.
  */
 public enum AllowedMovementType {
-    UP_LEFT(0, 0, 0), UP_RIGHT(0, 1, 1), DOWN_LEFT(1, 0, 2), DOWN_RIGHT(1, 1, 3);
+    UP_LEFT(0, 0, 0), UP_RIGHT(0, 1, 1), DOWN_LEFT(1, 0, 2), DOWN_RIGHT(1, 1, 3),NONE(0,0,4);
 
     private int UPDOWN, LEFTRIGHT, id;
 

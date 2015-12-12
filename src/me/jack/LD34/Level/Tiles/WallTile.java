@@ -9,22 +9,19 @@ import org.newdawn.slick.Graphics;
 /**
  * Created by Jack on 12/12/2015.
  */
-public class FlingTile extends Tile {
-    private int direction;
+public class WallTile extends Tile{
 
-    public FlingTile(int direction) {
-        super(TileType.FLING, AllowedMovementType.NONE);
-        this.direction = direction;
+    public WallTile() {
+        super(TileType.WALL,AllowedMovementType.NONE);
     }
 
     @Override
     public void render(Graphics g, int x, int y) {
-        g.drawImage(fTiles[direction], x * Tile.tileSize, y * Tile.tileSize);
+        g.drawImage(wallTile,x*Tile.tileSize,y*Tile.tileSize);
     }
 
     @Override
     public void steppedOn(Level level) {
-        System.out.println("FDir: " + direction);
-        level.player.fling(direction);
+        System.out.println("That's not supposed to happen");
     }
 }

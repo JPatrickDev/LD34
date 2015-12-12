@@ -19,7 +19,7 @@ public abstract class Tile {
     public static Image[] tiles = new Image[4];
     public static Image[] fTiles = new Image[4];
 
-    public static Image tpTile, tpTarget;
+    public static Image tpTile, tpTarget, wallTile;
 
     public static void init() {
         tiles[0] = ImageUtil.loadImage("res/upleft.png");
@@ -34,7 +34,7 @@ public abstract class Tile {
 
         tpTile = ImageUtil.loadImage("res/tptile.png");
         tpTarget = ImageUtil.loadImage("res/tptarget.png");
-
+        wallTile = ImageUtil.loadImage("res/walltile.png");
     }
 
     public Tile(TileType type, AllowedMovementType movementType) {
@@ -51,4 +51,8 @@ public abstract class Tile {
     }
 
     public abstract void steppedOn(Level level);
+
+    public TileType getType() {
+        return type;
+    }
 }

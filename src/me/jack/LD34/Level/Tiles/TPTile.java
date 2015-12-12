@@ -21,7 +21,7 @@ public class TPTile extends Tile{
     Color darkerC = Color.decode("#57007F");
     Color lighterC = Color.decode("#AE00FF");
     public TPTile(Point target, Color color) {
-        super(TileType.TP,AllowedMovementType.UP_LEFT);
+        super(TileType.TP,AllowedMovementType.NONE);
         this.target = target;
         try {
             customTile = createCustomTile(color);

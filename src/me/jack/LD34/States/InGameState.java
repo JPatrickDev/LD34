@@ -67,21 +67,27 @@ public class InGameState extends BasicGameState {
 
         AllowedMovementType currentMove = level.currentMove();
         g.setColor(Color.black);
-        if (currentMove.getUPDOWN() == 0) {
-            g.drawString("UP", 64, y + 64);
-        } else {
-            g.drawString("DOWN", 64, y + 64);
-        }
-        if (currentMove.getLEFTRIGHT() == 0) {
-            g.drawString("LEFT", 272 + 64, y + 64);
-        } else {
-            g.drawString("RIGHT", 272 + 64, y + 64);
+        if(currentMove == AllowedMovementType.NONE){
+            g.drawString("-", 64, y + 64);
+            g.drawString("-", 272 + 64, y + 64);
+        }else {
+            if (currentMove.getUPDOWN() == 0) {
+                g.drawString("UP", 64, y + 64);
+            } else {
+                g.drawString("DOWN", 64, y + 64);
+            }
+            if (currentMove.getLEFTRIGHT() == 0) {
+                g.drawString("LEFT", 272 + 64, y + 64);
+            } else {
+                g.drawString("RIGHT", 272 + 64, y + 64);
+            }
+            g.setColor(Color.white);
+            if (upDown == null) {
+                upDown = new Rectangle(0, y, 128, 128);
+                leftRight = new Rectangle(272, y, 128, 128);
+            }
         }
         g.setColor(Color.white);
-        if (upDown == null) {
-            upDown = new Rectangle(0, y, 128, 128);
-            leftRight = new Rectangle(272, y, 128, 128);
-        }
         g.drawString("Moves: " + level.moves,0,y + 136);
         g.drawString("Level: " + levelPos,0,y+150);
     }

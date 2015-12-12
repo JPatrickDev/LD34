@@ -1,9 +1,6 @@
 package me.jack.LD34.Level;
 
-import me.jack.LD34.Level.Tiles.BasicTile;
-import me.jack.LD34.Level.Tiles.FlingTile;
-import me.jack.LD34.Level.Tiles.TPTargetTile;
-import me.jack.LD34.Level.Tiles.TPTile;
+import me.jack.LD34.Level.Tiles.*;
 import me.jack.LD34.States.InGameState;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -11,6 +8,7 @@ import org.newdawn.slick.Graphics;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -27,6 +25,8 @@ public class Level {
     private Point start, end;
 
     public int moves = 0;
+
+    ArrayList<Rectangle> hitboxes = new ArrayList<Rectangle>();
 
     public Level(int d) {
         this.d = d;
@@ -70,6 +70,12 @@ public class Level {
         if (nX > (d - 1) * Tile.tileSize) {
             return false;
         }
+
+        Rectangle hitbox = new Rectangle(nX, nY, Tile.tileSize, Tile.tileSize);
+        for (Rectangle rt : hitboxes)
+            if (hitbox.intersects(rt))
+                return false;
+
         return true;
     }
 
@@ -83,6 +89,9 @@ public class Level {
         int i = 0;
         Tile[] tiles = new Tile[d * d];
         String line = "";
+
+        int x = 0, y = 0;
+        Level level = new Level(d);
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("#"))
                 continue;
@@ -98,7 +107,7 @@ public class Level {
                     t = new BasicTile(AllowedMovementType.values()[move]);
                     break;
                 case FLING:
-                    t = new FlingTile(AllowedMovementType.values()[move], Integer.parseInt(split[2]));
+                    t = new FlingTile(Integer.parseInt(split[2]));
                     break;
                 case TP:
                     t = new TPTile(new Point(Integer.parseInt(split[2]), Integer.parseInt(split[3])), Color.decode(split[4]));
@@ -106,12 +115,21 @@ public class Level {
                 case TPTARGET:
                     t = new TPTargetTile(AllowedMovementType.values()[move], Color.decode(split[2]));
                     break;
+                case WALL:
+                    t = new WallTile();
+                    level.hitboxes.add(new Rectangle(x*Tile.tileSize, y * Tile.tileSize, Tile.tileSize, Tile.tileSize));
+                    break;
             }
             tiles[i] = t;
             i++;
+            x++;
+            if (x >= d) {
+                x = 0;
+                y++;
+            }
         }
 
-        Level level = new Level(d);
+
         level.setTiles(tiles);
         level.setStartEnd(start, end);
         return level;

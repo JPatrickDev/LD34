@@ -7,6 +7,7 @@
     - Fling/
     - Moveable
     - TP/
+    - Wall/
 - Tiles show the allowed movements on them/
         - Small arrows?/
             - Make arrows smaller?
