@@ -69,13 +69,10 @@ Sound
 -Level loading almost certainly won't work with the files inside the jar, needs to work properly/
 
 - Main menu
-    - Tutorial page introducing each tile type
-    - Explain the controls
-        - Explain how to reset the level as it is likely you will get stuck at some point
+    - Tutorial page introducing each tile type/
 
 - Stars are persistent between restarts
     - Unlocks as well
-- Unlock all button for people who just want to play random levels?
 
 - Level select only works for intro levels, needs to work for all types/
 

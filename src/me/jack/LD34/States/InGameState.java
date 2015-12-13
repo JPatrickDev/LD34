@@ -40,16 +40,21 @@ public class InGameState extends BasicGameState {
         buttons[2] = ImageUtil.loadImage("res/leftbutton.png");
         buttons[3] = ImageUtil.loadImage("res/rightbutton.png");
 
+        reset = ImageUtil.loadImage("res/reset.png");
+        back = ImageUtil.loadImage("res/levelSelect.png");
+
         SoundEngine.getInstance().addSound("badmove", new Sound("res/Sound/badmove.wav"));
         SoundEngine.getInstance().addSound("tp", new Sound("res/Sound/tp.wav"));
-        SoundEngine.getInstance().addSound("fling",new Sound("res/Sound/fling.wav"));
-        SoundEngine.getInstance().addSound("end",new Sound("res/Sound/end.wav"));
-        SoundEngine.getInstance().addSound("start",new Sound("res/Sound/start.wav"));
+        SoundEngine.getInstance().addSound("fling", new Sound("res/Sound/fling.wav"));
+        SoundEngine.getInstance().addSound("end", new Sound("res/Sound/end.wav"));
+        SoundEngine.getInstance().addSound("start", new Sound("res/Sound/start.wav"));
     }
 
 
     Image[] buttons = new Image[4];
     boolean levelOver = false;
+
+    Image reset, back;
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
@@ -73,7 +78,7 @@ public class InGameState extends BasicGameState {
         levelPos++;
         try {
             level = Level.load("levels/" + levelCat + "/" + levelPos + ".txt");
-        } catch (NullPointerException  e) {
+        } catch (NullPointerException e) {
             backToLevelSelect = true;
             return;
         } catch (IOException e) {
@@ -99,7 +104,7 @@ public class InGameState extends BasicGameState {
         }
     }
 
-    Rectangle upDown, leftRight;
+    Rectangle upDown, leftRight, resetrt, backr;
 
     public void drawButtons(Graphics g) {
         int y = 260;
@@ -110,12 +115,17 @@ public class InGameState extends BasicGameState {
             g.drawString("-", 272 + 64, y + 64);
         } else {
             g.drawImage(buttons[currentMove.getUPDOWN()], 0, 400 - 64);
-            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2], 96, 400 - 64);
+            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2], 68, 400 - 64);
             if (upDown == null) {
                 upDown = new Rectangle(0, 400 - 64, 64, 64);
-                leftRight = new Rectangle(96, 400 - 64, 64, 64);
+                leftRight = new Rectangle(68, 400 - 64, 64, 64);
+                resetrt = new Rectangle(64 + 68 + 4, 400 - 64, 64, 64);
+                backr = new Rectangle(64 + 64 + 68 + 8, 400 - 64, 64, 64);
             }
         }
+
+        g.drawImage(reset, 64 + 68 + 4, 400 - 64);
+        g.drawImage(back, 64 + 64 + 68 + 8, 400 - 64);
         g.setColor(Color.white);
         g.drawString("Moves: " + level.moves, 0, 400 - 80);
         g.drawString("Level: " + levelPos, 300, 400 - 80);
@@ -167,6 +177,11 @@ public class InGameState extends BasicGameState {
                 //level.moves++;
                 level.player.moveTo(level.player.getX() + Tile.tileSize, level.player.getY());
             }
+        }else if(backr.contains(x,y)){
+            backToLevelSelect = true;
+        }else if(resetrt.contains(x,y)){
+            levelPos--;
+            nextLevel();
         }
 
     }
