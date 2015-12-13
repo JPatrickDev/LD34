@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="854910c5-3e1d-41b2-9bd1-2a093025f49c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" afterPath="$PROJECT_DIR$/src/me/jack/LD34/Level/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Buildv2.jar" afterPath="$PROJECT_DIR$/Buildv2.jar" />
     </list>
     <ignored path="LD34.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,8 +122,8 @@
       <file leaf-file-name="3.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/levels/hard/3.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06967213">
-              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.7199454">
+              <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -1242,8 +1242,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/LD34/Level/levels/hard/3.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06967213">
-          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.7199454">
+          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
           <folding />
         </state>
       </provider>
