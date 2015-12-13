@@ -24,7 +24,7 @@ public class LevelSelectState extends BasicGameState {
     LinkedHashMap<Level, Integer> introLevelStatus = new LinkedHashMap<Level, Integer>();
     LinkedHashMap<Level, Integer> easyLevelStatus = new LinkedHashMap<Level, Integer>();
     LinkedHashMap<Level, Integer> mediumLevelStatus = new LinkedHashMap<Level, Integer>();
-    HashMap<Level, Integer> hardLevelStatus = new HashMap<Level, Integer>();
+    LinkedHashMap<Level, Integer> hardLevelStatus = new LinkedHashMap<Level, Integer>();
     private boolean startLevel = false;
 
     public static LevelSelectState instance;
@@ -73,6 +73,19 @@ public class LevelSelectState extends BasicGameState {
                 e.printStackTrace();
             }
         }
+
+        for (int i = 1; i != hardLevels.list().length + 1; i++) {
+            File levelFile = new File("levels/hard/" + i + ".txt");
+            try {
+                Level level = Level.load(levelFile.getPath());
+                int status = -1;
+                if (i == 1 || i == 2)
+                    status = 0;
+                hardLevelStatus.put(level, status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -90,7 +103,7 @@ public class LevelSelectState extends BasicGameState {
             String status = "";
             int statusCode = introLevelStatus.get(level);
             if (statusCode == -1) {
-                status = "(Locked)";
+                status = "Locked";
             } else if (statusCode == 0) {
                 status = "Unlocked";
             } else {
@@ -126,6 +139,25 @@ public class LevelSelectState extends BasicGameState {
         for (Level level : mediumLevelStatus.keySet()) {
             String status = "";
             int statusCode = mediumLevelStatus.get(level);
+            if (statusCode == -1) {
+                status = "(Locked)";
+            } else if (statusCode == 0) {
+                status = "Unlocked";
+            } else {
+                status = statusCode + " Stars";
+            }
+            graphics.drawString(i + "-" + status, x, y);
+            y += 30;
+            i++;
+        }
+
+        graphics.drawString("Hard Levels", 8, 195);
+        x = 8;
+        y = 210;
+        i = 1;
+        for (Level level : hardLevelStatus.keySet()) {
+            String status = "";
+            int statusCode = hardLevelStatus.get(level);
             if (statusCode == -1) {
                 status = "(Locked)";
             } else if (statusCode == 0) {
@@ -193,6 +225,23 @@ public class LevelSelectState extends BasicGameState {
                 InGameState.instance.levelCat = "medium";
                 InGameState.instance.levelPos = yT + 1;
             }
+        }
+
+        if (x > 8 && y > 210 && x < 92 && y < 360) {
+            int yT = (y - 210) / 30;
+            Level level = getLevelAt(hardLevelStatus.keySet(), yT);
+            if(hardLevelStatus.get(level) == -1) {
+                SoundEngine.getInstance().play("locked");
+                return;
+            }
+            try {
+                InGameState.instance.setLevel(Level.load("levels/hard/" + (yT + 1) + ".txt"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            startLevel = true;
+            InGameState.instance.levelCat = "hard";
+            InGameState.instance.levelPos = yT + 1;
         }
     }
 

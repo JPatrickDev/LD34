@@ -20,10 +20,11 @@
 
 - Can't make a move that takes you out of the map/
     - Move counter doesn't increase for a illegal move/
-    - Sound effect when an illegal move is attempted
+    - Sound effect when an illegal move is attempted/
 
 - Level select screen
-    - Unlock two levels at a time so you can skip a difficult one
+    - Unlock two levels at a time so you can skip a difficult one/
+        - Unlock the first two of each cat at the start
 - Hints?
     - Hint coins or something
         - Highlights part of the path
@@ -72,7 +73,7 @@ Sound
     - Explain the controls
         - Explain how to reset the level as it is likely you will get stuck at some point
 
-- Stars are pesistance between restarts
+- Stars are persistent between restarts
     - Unlocks as well
 - Unlock all button for people who just want to play random levels?
 

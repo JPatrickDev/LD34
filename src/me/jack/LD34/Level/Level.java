@@ -159,6 +159,11 @@ public class Level {
             switch (tType) {
                 case BASIC:
                     t = new BasicTile(AllowedMovementType.values()[move]);
+                    try{
+                        int ii = Integer.parseInt(split[2]);
+                        if(ii == 1)
+                            level.moveableTiles.add(new MoveableTile(x*Tile.tileSize,y*Tile.tileSize));
+                    }catch(Exception e){}
                     break;
                 case FLING:
                     t = new FlingTile(Integer.parseInt(split[2]));
