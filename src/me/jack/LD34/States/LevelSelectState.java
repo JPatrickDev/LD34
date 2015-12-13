@@ -20,12 +20,13 @@ public class LevelSelectState extends BasicGameState {
 
 
     LinkedHashMap<Level, Integer> introLevelStatus = new LinkedHashMap<Level, Integer>();
-    HashMap<Level, Integer> easyLevelStatus = new HashMap<Level, Integer>();
+    LinkedHashMap<Level, Integer> easyLevelStatus = new LinkedHashMap<Level, Integer>();
     HashMap<Level, Integer> mediumLevelStatus = new HashMap<Level, Integer>();
     HashMap<Level, Integer> hardLevelStatus = new HashMap<Level, Integer>();
     private boolean startLevel = false;
 
     public static LevelSelectState instance;
+
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         LevelSelectState.instance = this;
@@ -33,16 +34,26 @@ public class LevelSelectState extends BasicGameState {
         File easyLevels = new File("levels/easy/");
         File mediumLevels = new File("levels/medium/");
         File hardLevels = new File("levels/hard/");
-        int ii = 0;
         for (int i = 1; i != introLevels.list().length + 1; i++) {
             File levelFile = new File("levels/intro/" + i + ".txt");
             try {
-                ii++;
                 Level level = Level.load(levelFile.getPath());
                 int status = 0;
                 if (i == 1 || i == 2)
                     status = 0;
                 introLevelStatus.put(level, status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 1; i != easyLevels.list().length + 1; i++) {
+            File levelFile = new File("levels/easy/" + i + ".txt");
+            try {
+                Level level = Level.load(levelFile.getPath());
+                int status = 0;
+                if (i == 1 || i == 2)
+                    status = 0;
+                easyLevelStatus.put(level, status);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,6 +85,26 @@ public class LevelSelectState extends BasicGameState {
             y += 30;
             i++;
         }
+        graphics.drawString("Easy  Levels", 120, 30);
+        x = 128;
+        y = 45;
+        i = 1;
+        for (Level level : easyLevelStatus.keySet()) {
+            String status = "";
+            int statusCode = easyLevelStatus.get(level);
+            if (statusCode == -1) {
+                status = "(Locked)";
+            } else if (statusCode == 0) {
+                status = "Unlocked";
+            } else {
+                status = statusCode + " Stars";
+            }
+            graphics.drawString(i + "-" + status, x, y);
+            y += 30;
+            i++;
+        }
+
+
     }
 
     @Override
@@ -83,13 +114,26 @@ public class LevelSelectState extends BasicGameState {
                 int yT = (y - 45) / 30;
                 Level level = getLevelAt(introLevelStatus.keySet(), yT);
                 try {
-                    InGameState.instance.setLevel(Level.load("levels/intro/" + (yT+1) + ".txt"));
+                    InGameState.instance.setLevel(Level.load("levels/intro/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 startLevel = true;
                 InGameState.instance.levelCat = "intro";
-                InGameState.instance.levelPos = yT+1;
+                InGameState.instance.levelPos = yT + 1;
+            }
+
+            if (x > 120 && y > 45 && x < 92+158 && y < 195) {
+                int yT = (y - 45) / 30;
+                Level level = getLevelAt(introLevelStatus.keySet(), yT);
+                try {
+                    InGameState.instance.setLevel(Level.load("levels/easy/" + (yT + 1) + ".txt"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startLevel = true;
+                InGameState.instance.levelCat = "easy";
+                InGameState.instance.levelPos = yT + 1;
             }
         }
     }
@@ -106,14 +150,17 @@ public class LevelSelectState extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if(startLevel)
+        if (startLevel)
             stateBasedGame.enterState(1);
     }
 
-    public void setScore(int cat, int pos,int score){
-        if(cat == 0){
-            Level level = getLevelAt(introLevelStatus.keySet(),pos);
-            introLevelStatus.put(level,score);
+    public void setScore(int cat, int pos, int score) {
+        if (cat == 0) {
+            Level level = getLevelAt(introLevelStatus.keySet(), pos);
+            introLevelStatus.put(level, score);
+        }else if(cat == 1){
+            Level level = getLevelAt(easyLevelStatus.keySet(), pos);
+            easyLevelStatus.put(level, score);
         }
     }
 

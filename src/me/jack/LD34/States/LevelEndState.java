@@ -33,14 +33,20 @@ public class LevelEndState extends BasicGameState {
         if (movesTaken <= minMoves) {
             stars = 3;
         } else {
-            int percentDiff = (minMoves / movesTaken) * 100;
-            if (percentDiff <= 10) {
+            int percentDiff = ((movesTaken-minMoves)/minMoves) * 100;
+            System.out.println(percentDiff);
+            if (percentDiff <= 5) {
                 stars = 2;
             } else
                 stars = 1;
         }
 
-        LevelSelectState.instance.setScore(0,pos,stars);
+        int catI = -1;
+        if(cat.equals("intro"))
+            catI = 0;
+        else if(cat.equals("easy"))
+            catI = 1;
+        LevelSelectState.instance.setScore(catI,pos,stars);
         next = false;
     }
 

@@ -100,6 +100,7 @@ public class InGameState extends BasicGameState {
         g.setColor(Color.white);
         g.drawString("Moves: " + level.moves, 0, 400 - 80);
         g.drawString("Level: " + levelPos, 300, 400 - 80);
+        g.drawString("Cat: " + levelCat,300,400-60);
     }
 
     @Override
