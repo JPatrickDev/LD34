@@ -109,6 +109,12 @@ public class Player {
         }
     }
 
+    public void tped(){
+        movingTo = null;
+        state = 0;
+        fling = false;
+    }
+
     public void setX(int x) {
         this.x = x;
     }

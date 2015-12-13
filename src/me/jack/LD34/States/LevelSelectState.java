@@ -23,7 +23,7 @@ public class LevelSelectState extends BasicGameState {
 
     LinkedHashMap<Level, Integer> introLevelStatus = new LinkedHashMap<Level, Integer>();
     LinkedHashMap<Level, Integer> easyLevelStatus = new LinkedHashMap<Level, Integer>();
-    HashMap<Level, Integer> mediumLevelStatus = new HashMap<Level, Integer>();
+    LinkedHashMap<Level, Integer> mediumLevelStatus = new LinkedHashMap<Level, Integer>();
     HashMap<Level, Integer> hardLevelStatus = new HashMap<Level, Integer>();
     private boolean startLevel = false;
 

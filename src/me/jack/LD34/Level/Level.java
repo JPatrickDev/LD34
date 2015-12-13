@@ -219,6 +219,7 @@ public class Level {
     public void tpPlayer(Point target) {
         player.setX(target.x * Tile.tileSize);
         player.setY(target.y * Tile.tileSize);
+        player.tped();
         SoundEngine.getInstance().play("tp");
     }
 }
