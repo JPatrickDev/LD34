@@ -53,7 +53,7 @@ public class InGameState extends BasicGameState {
         System.out.println("Loading: " + (levelPos+1));
         levelPos++;
         try {
-            level = Level.load("levels/" + levelPos + ".txt");
+            level = Level.load("levels/intro/" + levelPos + ".txt");
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null,"Level " + levelPos + " not found, exiting");
             System.exit(0);
@@ -144,7 +144,7 @@ public class InGameState extends BasicGameState {
             level.update(this);
             if(levelOver){
                 LevelEndState.movesTaken = level.moves;
-                LevelEndState.minMoves = 7;
+                LevelEndState.minMoves =level.minMoves;
                 LevelEndState.state = this;
                 stateBasedGame.enterState(2);
             }

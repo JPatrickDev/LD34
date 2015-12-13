@@ -27,7 +27,7 @@ public class Level {
 
     private Point start, end;
 
-    public int moves = 0;
+    public int moves = 0,minMoves;
 
     ArrayList<Rectangle> hitboxes = new ArrayList<Rectangle>();
     ArrayList<MoveableTile> moveableTiles = new ArrayList<MoveableTile>();
@@ -128,10 +128,12 @@ public class Level {
         Point end = new Point(Integer.parseInt(endSplit[0]), Integer.parseInt(endSplit[1]));
         int i = 0;
         Tile[] tiles = new Tile[d * d];
+        int minMoves = Integer.parseInt(reader.readLine());
         String line = "";
 
         int x = 0, y = 0;
         Level level = new Level(d);
+        level.minMoves = minMoves;
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("#"))
                 continue;
