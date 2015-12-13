@@ -1,8 +1,9 @@
 package me.jack.LD34.Level;
 
+import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Sound;
+import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 import java.awt.*;
@@ -14,15 +15,17 @@ public class Player {
 
     private int x, y;
 
+    public static org.newdawn.slick.Image player;
+
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.orange);
-        g.fillRect(x, y, Tile.tileSize, Tile.tileSize);
-        g.setColor(Color.white);
+        if (player == null)
+            player = ImageUtil.loadImage("res/player.png");
+        g.drawImage(player, x, y);
     }
 
     //0 = standing, 1 = moving
@@ -55,8 +58,8 @@ public class Player {
             int tX = movingTo.x;
             int tY = movingTo.y;
             if (tX > x) {
-                if(level.canMove(x+2,y,x,y))
-                x += 2;
+                if (level.canMove(x + 2, y, x, y))
+                    x += 2;
                 else {
                     state = 0;
                     movingTo = null;
@@ -65,8 +68,8 @@ public class Player {
                     SoundEngine.getInstance().play("badmove");
                 }
             } else if (tX < x) {
-                if(level.canMove(x-2,y,x,y))
-                x -= 2;
+                if (level.canMove(x - 2, y, x, y))
+                    x -= 2;
                 else {
                     state = 0;
                     movingTo = null;
@@ -75,8 +78,8 @@ public class Player {
                     SoundEngine.getInstance().play("badmove");
                 }
             } else if (tY > y) {
-                if(level.canMove(x,y+2,x,y))
-                y += 2;
+                if (level.canMove(x, y + 2, x, y))
+                    y += 2;
                 else {
                     state = 0;
                     movingTo = null;
@@ -85,8 +88,8 @@ public class Player {
                     SoundEngine.getInstance().play("badmove");
                 }
             } else {
-                if(level.canMove(x,y-2,x,y))
-                y -= 2;
+                if (level.canMove(x, y - 2, x, y))
+                    y -= 2;
                 else {
                     state = 0;
                     movingTo = null;
@@ -109,7 +112,7 @@ public class Player {
         }
     }
 
-    public void tped(){
+    public void tped() {
         movingTo = null;
         state = 0;
         fling = false;

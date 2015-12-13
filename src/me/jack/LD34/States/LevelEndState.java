@@ -49,6 +49,8 @@ public class LevelEndState extends BasicGameState {
             catI = 1;
         else if(cat.equals("medium"))
             catI = 2;
+        else if(cat.equals("hard"))
+            catI = 3;
         LevelSelectState.instance.setScore(catI,pos,stars);
         LevelSelectState.instance.setScore(catI,pos+1,0);
         next = false;

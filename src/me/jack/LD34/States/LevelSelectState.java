@@ -287,6 +287,14 @@ public class LevelSelectState extends BasicGameState {
                 if(cScore == -1){
                     mediumLevelStatus.put(level, score);
                 }
+            }else if(cat == 3){
+                Level level = getLevelAt(hardLevelStatus.keySet(), pos);
+                if(level == null)
+                    return;
+                int cScore = hardLevelStatus.get(level);
+                if(cScore == -1){
+                    hardLevelStatus.put(level, score);
+                }
             }
         }else {
             if (cat == 0) {
@@ -298,6 +306,9 @@ public class LevelSelectState extends BasicGameState {
             } else if (cat == 2) {
                 Level level = getLevelAt(mediumLevelStatus.keySet(), pos);
                 mediumLevelStatus.put(level, score);
+            }else if(cat == 3){
+                Level level = getLevelAt(hardLevelStatus.keySet(), pos);
+                hardLevelStatus.put(level, score);
             }
         }
     }

@@ -79,4 +79,4 @@ Sound
 
 - Level select only works for intro levels, needs to work for all types/
 
-- One image for each direction,flipped in code
+- One image for each direction,flipped in code/

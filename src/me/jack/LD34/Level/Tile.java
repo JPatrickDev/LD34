@@ -19,24 +19,32 @@ public abstract class Tile {
     public static Image[] tiles = new Image[4];
     public static Image[] fTiles = new Image[4];
 
-    public static Image tpTile, tpTarget, wallTile,moveableTile,border;
+    public static Image tpTile, tpTarget, wallTile, moveableTile, border;
 
     public static void init() {
-        tiles[0] = ImageUtil.loadImage("res/upleft.png");
-        tiles[1] = ImageUtil.loadImage("res/upright.png");
-        tiles[2] = ImageUtil.loadImage("res/downleft.png");
-        tiles[3] = ImageUtil.loadImage("res/downright.png");
+        Image basic = ImageUtil.loadImage("res/upleft.png");
 
-        fTiles[0] = ImageUtil.loadImage("res/flingleft.png");
-        fTiles[1] = ImageUtil.loadImage("res/flingup.png");
-        fTiles[2] = ImageUtil.loadImage("res/flightright.png");
-        fTiles[3] = ImageUtil.loadImage("res/flingdown.png");
+        tiles[0] = basic;
+        tiles[1] = rotate(basic, 90);
+        tiles[2] = rotate(basic, 270);
+        tiles[3] = rotate(basic, 180);
+
+        Image flingBasic = ImageUtil.loadImage("res/flingleft.png");
+        fTiles[0] = flingBasic;
+        fTiles[1] = rotate(flingBasic,90);
+        fTiles[2] = rotate(flingBasic,270);
+        fTiles[3] = rotate(flingBasic,180);
 
         tpTile = ImageUtil.loadImage("res/tptile.png");
-        tpTarget = ImageUtil.loadImage("res/tptarget.png");
         wallTile = ImageUtil.loadImage("res/walltile.png");
         moveableTile = ImageUtil.loadImage("res/moveabletile.png");
         border = ImageUtil.loadImage("res/border.png");
+    }
+
+    public static Image rotate(Image i, int deg) {
+        Image ii = i.copy();
+        ii.rotate(deg);
+        return ii;
     }
 
     public Tile(TileType type, AllowedMovementType movementType) {
