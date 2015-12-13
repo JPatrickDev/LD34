@@ -55,6 +55,16 @@ public class Level {
             cY = 160 - (mH / 2);
         }
         g.translate(cX,cY);
+        for(int i = 0;i!= d +2;i++) {
+            g.drawImage(Tile.border, (i * Tile.tileSize) - Tile.tileSize, -Tile.tileSize);
+            g.drawImage(Tile.border, (i * Tile.tileSize) - Tile.tileSize, (d * Tile.tileSize));
+        }
+
+        for(int i = 0;i!= d;i++) {
+            g.drawImage(Tile.border,-Tile.tileSize,i*Tile.tileSize);
+            g.drawImage(Tile.border,d*Tile.tileSize,i*Tile.tileSize);
+        }
+
         for (int x = 0; x != d; x++) {
             for (int y = 0; y != d; y++) {
                 tiles[x + y * d].render(g, x, y);

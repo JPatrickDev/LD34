@@ -41,7 +41,7 @@ Art for everything
         -Fling/
             - Might need improving if have the time
         -TP Tiles/
-- Walls
+- Walls/
 
 Sound
 - Movement

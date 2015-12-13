@@ -19,7 +19,7 @@ public abstract class Tile {
     public static Image[] tiles = new Image[4];
     public static Image[] fTiles = new Image[4];
 
-    public static Image tpTile, tpTarget, wallTile,moveableTile;
+    public static Image tpTile, tpTarget, wallTile,moveableTile,border;
 
     public static void init() {
         tiles[0] = ImageUtil.loadImage("res/upleft.png");
@@ -36,6 +36,7 @@ public abstract class Tile {
         tpTarget = ImageUtil.loadImage("res/tptarget.png");
         wallTile = ImageUtil.loadImage("res/walltile.png");
         moveableTile = ImageUtil.loadImage("res/moveabletile.png");
+        border = ImageUtil.loadImage("res/border.png");
     }
 
     public Tile(TileType type, AllowedMovementType movementType) {
