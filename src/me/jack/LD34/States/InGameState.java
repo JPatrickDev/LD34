@@ -33,6 +33,7 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        gameContainer.setSoundVolume(0.5f);
         InGameState.instance = this;
         Tile.init();
         buttons[0] = ImageUtil.loadImage("res/upbutton.png");
@@ -110,10 +111,7 @@ public class InGameState extends BasicGameState {
         int y = 260;
         AllowedMovementType currentMove = level.currentMove();
         g.setColor(Color.black);
-        if (currentMove == AllowedMovementType.NONE) {
-            g.drawString("-", 64, y + 64);
-            g.drawString("-", 272 + 64, y + 64);
-        } else {
+
             g.drawImage(buttons[currentMove.getUPDOWN()], 0, 400 - 64);
             g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2], 68, 400 - 64);
             if (upDown == null) {
@@ -122,7 +120,7 @@ public class InGameState extends BasicGameState {
                 resetrt = new Rectangle(64 + 68 + 4, 400 - 64, 64, 64);
                 backr = new Rectangle(64 + 64 + 68 + 8, 400 - 64, 64, 64);
             }
-        }
+
 
         g.drawImage(reset, 64 + 68 + 4, 400 - 64);
         g.drawImage(back, 64 + 64 + 68 + 8, 400 - 64);
