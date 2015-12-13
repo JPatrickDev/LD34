@@ -132,7 +132,8 @@ public class Level {
     }
 
     public static Level load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
+        System.out.println(path);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(Level.class.getResourceAsStream(path)));
         int d = Integer.parseInt(reader.readLine());
         String[] startSplit = reader.readLine().split(":");
         String[] endSplit = reader.readLine().split(":");

@@ -73,7 +73,7 @@ public class InGameState extends BasicGameState {
         levelPos++;
         try {
             level = Level.load("levels/" + levelCat + "/" + levelPos + ".txt");
-        } catch (FileNotFoundException e) {
+        } catch (NullPointerException  e) {
             backToLevelSelect = true;
             return;
         } catch (IOException e) {
