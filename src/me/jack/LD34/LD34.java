@@ -1,9 +1,6 @@
 package me.jack.LD34;
 
-import me.jack.LD34.States.InGameState;
-import me.jack.LD34.States.LevelEndState;
-import me.jack.LD34.States.LevelSelectState;
-import me.jack.LD34.States.MainMenuState;
+import me.jack.LD34.States.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
@@ -31,5 +28,6 @@ public class LD34 extends StateBasedGame{
         this.addState(new LevelSelectState());
         this.addState(new InGameState());
         this.addState(new LevelEndState());
+        this.addState(new TutorialState());
     }
 }
