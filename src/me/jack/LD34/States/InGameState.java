@@ -78,7 +78,7 @@ public class InGameState extends BasicGameState {
         System.out.println("Loading: " + (levelPos + 1));
         levelPos++;
         try {
-            level = Level.load("levels/" + levelCat + "/" + levelPos + ".txt");
+            level = Level.load("levels/" + levelCat + "/" + levelPos + ".txt",false);
         } catch (NullPointerException e) {
             backToLevelSelect = true;
             return;

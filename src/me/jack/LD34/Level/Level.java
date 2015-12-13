@@ -131,7 +131,7 @@ public class Level {
         return true;
     }
 
-    public static Level load(String path) throws IOException {
+    public static Level load(String path,boolean levelSelect) throws IOException {
         System.out.println(path);
         BufferedReader reader = new BufferedReader(new InputStreamReader(Level.class.getResourceAsStream(path)));
         int d = Integer.parseInt(reader.readLine());
@@ -147,6 +147,8 @@ public class Level {
         int x = 0, y = 0;
         Level level = new Level(d);
         level.minMoves = minMoves;
+        if(levelSelect)
+            return level;
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("#"))
                 continue;

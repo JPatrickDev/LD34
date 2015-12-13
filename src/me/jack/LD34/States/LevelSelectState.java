@@ -47,56 +47,62 @@ public class LevelSelectState extends BasicGameState {
             e.printStackTrace();
         }
 */
-        for(int i =1;i!= 6;i++){
-            if(levelExists("levels/intro/" + i + ".txt")){
-                Level level = null;
-                try {
-                    level = Level.load("levels/intro/" + i + ".txt");
-                } catch (IOException e) {
-                    e.printStackTrace();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i =1;i!= 6;i++){
+                    if(levelExists("levels/intro/" + i + ".txt")){
+                        Level level = null;
+                        try {
+                            level = Level.load("levels/intro/" + i + ".txt",true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        int status = -1;
+                        if (i == 1 || i == 2)
+                            status = 0;
+                        introLevelStatus.put(level, status);
+                    }
+                    if(levelExists("levels/easy/" + i + ".txt")){
+                        Level level = null;
+                        try {
+                            level = Level.load("levels/easy/" + i + ".txt",true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        int status = -1;
+                        if (i == 1 || i == 2)
+                            status = 0;
+                        easyLevelStatus.put(level, status);
+                    }
+                    if(levelExists("levels/medium/" + i + ".txt")){
+                        Level level = null;
+                        try {
+                            level = Level.load("levels/medium/" + i + ".txt",true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        int status = -1;
+                        if (i == 1 || i == 2)
+                            status = 0;
+                        mediumLevelStatus.put(level, status);
+                    }
+                    if(levelExists("levels/hard/" + i + ".txt")){
+                        Level level = null;
+                        try {
+                            level = Level.load("levels/hard/" + i + ".txt",true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        int status = -1;
+                        if (i == 1 || i == 2)
+                            status = 0;
+                        hardLevelStatus.put(level, status);
+                    }
                 }
-                int status = -1;
-                if (i == 1 || i == 2)
-                    status = 0;
-                introLevelStatus.put(level, status);
+
             }
-            if(levelExists("levels/easy/" + i + ".txt")){
-                Level level = null;
-                try {
-                    level = Level.load("levels/easy/" + i + ".txt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                int status = -1;
-                if (i == 1 || i == 2)
-                    status = 0;
-                easyLevelStatus.put(level, status);
-            }
-            if(levelExists("levels/medium/" + i + ".txt")){
-                Level level = null;
-                try {
-                    level = Level.load("levels/medium/" + i + ".txt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                int status = -1;
-                if (i == 1 || i == 2)
-                    status = 0;
-                mediumLevelStatus.put(level, status);
-            }
-            if(levelExists("levels/hard/" + i + ".txt")){
-                Level level = null;
-                try {
-                    level = Level.load("levels/hard/" + i + ".txt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                int status = -1;
-                if (i == 1 || i == 2)
-                    status = 0;
-                hardLevelStatus.put(level, status);
-            }
-        }
+        }).start();
 
         LevelSelectState.instance = this;
         SoundEngine.getInstance().addSound("locked", new Sound("res/Sound/locked.wav"));
@@ -200,7 +206,7 @@ public class LevelSelectState extends BasicGameState {
                     return;
                 }
                 try {
-                    InGameState.instance.setLevel(Level.load("levels/intro/" + (yT + 1) + ".txt"));
+                    InGameState.instance.setLevel(Level.load("levels/intro/" + (yT + 1) + ".txt",false));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -217,7 +223,7 @@ public class LevelSelectState extends BasicGameState {
                     return;
                 }
                 try {
-                    InGameState.instance.setLevel(Level.load("levels/easy/" + (yT + 1) + ".txt"));
+                    InGameState.instance.setLevel(Level.load("levels/easy/" + (yT + 1) + ".txt",false));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -234,7 +240,7 @@ public class LevelSelectState extends BasicGameState {
                     return;
                 }
                 try {
-                    InGameState.instance.setLevel(Level.load("levels/medium/" + (yT + 1) + ".txt"));
+                    InGameState.instance.setLevel(Level.load("levels/medium/" + (yT + 1) + ".txt",false));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -252,7 +258,7 @@ public class LevelSelectState extends BasicGameState {
                 return;
             }
             try {
-                InGameState.instance.setLevel(Level.load("levels/hard/" + (yT + 1) + ".txt"));
+                InGameState.instance.setLevel(Level.load("levels/hard/" + (yT + 1) + ".txt",false));
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -55,24 +55,21 @@ Sound
 - Selecting a locked level/
 
 
-4 level categories
+4 level categories/
 -Intro
-    - No special tiles, just the Basic ones
+    - No special tiles, just the Basic ones/
 - Easy
-    - Basic and Fling
+    - Basic and Fling/
 - Med
-    - Basic, Fling and TP
+    - Basic, Fling and TP/
 - Hard
-    - Basic,Fling,TP and Moveable
+    - Basic,Fling,TP and Moveable/
 
 
 -Level loading almost certainly won't work with the files inside the jar, needs to work properly/
 
 - Main menu
     - Tutorial page introducing each tile type/
-
-- Stars are persistent between restarts
-    - Unlocks as well
 
 - Level select only works for intro levels, needs to work for all types/
 
