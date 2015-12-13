@@ -97,7 +97,7 @@ public class LevelSelectState extends BasicGameState {
             y += 30;
             i++;
         }
-        graphics.drawString("Easy  Levels", 120, 30);
+        graphics.drawString("Easy Levels", 120, 30);
         x = 128;
         y = 45;
         i = 1;
@@ -116,7 +116,7 @@ public class LevelSelectState extends BasicGameState {
             i++;
         }
 
-        graphics.drawString("Medium  Levels", 240, 30);
+        graphics.drawString("Medium Levels", 240, 30);
         x = 248;
         y = 45;
         i = 1;
