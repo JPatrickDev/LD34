@@ -74,8 +74,7 @@ public class Level {
 
         for (MoveableTile t : moveableTiles)
             t.render(g, 0, 0);
-        g.fillRect(start.x * Tile.tileSize, start.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
-        g.fillRect(end.x * Tile.tileSize, end.y * Tile.tileSize, Tile.tileSize, Tile.tileSize);
+
         g.drawImage(exit, end.x * Tile.tileSize, end.y * Tile.tileSize);
         player.render(g);
         g.resetTransform();

@@ -9,7 +9,7 @@ import uk.co.jdpatrick.JEngine.JEngine;
 public class Main{
 
     public static void main(String[] args){
-        JEngine.start(new LD34("?????? For LD34 - Theme: Two Button Controls"),400,400);
+        JEngine.start(new LD34("Arrow Drift For LD34 - Theme: Two Button Controls"),400,400);
     }
 
 }

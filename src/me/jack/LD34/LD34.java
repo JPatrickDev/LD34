@@ -29,5 +29,6 @@ public class LD34 extends StateBasedGame{
         this.addState(new InGameState());
         this.addState(new LevelEndState());
         this.addState(new TutorialState());
+        addState(new AboutState());
     }
 }
