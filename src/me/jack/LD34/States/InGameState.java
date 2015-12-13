@@ -3,6 +3,7 @@ package me.jack.LD34.States;
 import me.jack.LD34.Level.AllowedMovementType;
 import me.jack.LD34.Level.Level;
 import me.jack.LD34.Level.Tile;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -77,6 +78,15 @@ public class InGameState extends BasicGameState {
             level.render(graphics);
             drawButtons(graphics);
 
+        }
+    }
+
+
+    @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        if(key == Keyboard.KEY_ESCAPE){
+           backToLevelSelect = true;
         }
     }
 

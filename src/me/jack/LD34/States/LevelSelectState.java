@@ -38,7 +38,7 @@ public class LevelSelectState extends BasicGameState {
             File levelFile = new File("levels/intro/" + i + ".txt");
             try {
                 Level level = Level.load(levelFile.getPath());
-                int status = 0;
+                int status = -1;
                 if (i == 1 || i == 2)
                     status = 0;
                 introLevelStatus.put(level, status);
@@ -50,10 +50,22 @@ public class LevelSelectState extends BasicGameState {
             File levelFile = new File("levels/easy/" + i + ".txt");
             try {
                 Level level = Level.load(levelFile.getPath());
-                int status = 0;
+                int status = -1;
                 if (i == 1 || i == 2)
                     status = 0;
                 easyLevelStatus.put(level, status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 1; i != mediumLevels.list().length + 1; i++) {
+            File levelFile = new File("levels/medium/" + i + ".txt");
+            try {
+                Level level = Level.load(levelFile.getPath());
+                int status = -1;
+                if (i == 1 || i == 2)
+                    status = 0;
+                mediumLevelStatus.put(level, status);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -104,6 +116,24 @@ public class LevelSelectState extends BasicGameState {
             i++;
         }
 
+        graphics.drawString("Medium  Levels", 240, 30);
+        x = 248;
+        y = 45;
+        i = 1;
+        for (Level level : mediumLevelStatus.keySet()) {
+            String status = "";
+            int statusCode = mediumLevelStatus.get(level);
+            if (statusCode == -1) {
+                status = "(Locked)";
+            } else if (statusCode == 0) {
+                status = "Unlocked";
+            } else {
+                status = statusCode + " Stars";
+            }
+            graphics.drawString(i + "-" + status, x, y);
+            y += 30;
+            i++;
+        }
 
     }
 
@@ -113,6 +143,8 @@ public class LevelSelectState extends BasicGameState {
             if (x > 8 && y > 45 && x < 92 && y < 195) {
                 int yT = (y - 45) / 30;
                 Level level = getLevelAt(introLevelStatus.keySet(), yT);
+                if(introLevelStatus.get(level) == -1)
+                    return;
                 try {
                     InGameState.instance.setLevel(Level.load("levels/intro/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {
@@ -125,7 +157,9 @@ public class LevelSelectState extends BasicGameState {
 
             if (x > 120 && y > 45 && x < 92+158 && y < 195) {
                 int yT = (y - 45) / 30;
-                Level level = getLevelAt(introLevelStatus.keySet(), yT);
+                Level level = getLevelAt(easyLevelStatus.keySet(), yT);
+                if(easyLevelStatus.get(level) == -1)
+                    return;
                 try {
                     InGameState.instance.setLevel(Level.load("levels/easy/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {
@@ -133,6 +167,21 @@ public class LevelSelectState extends BasicGameState {
                 }
                 startLevel = true;
                 InGameState.instance.levelCat = "easy";
+                InGameState.instance.levelPos = yT + 1;
+            }
+
+            if (x > 248 && y > 45 && x < 92+158 + 158 && y < 195) {
+                int yT = (y - 45) / 30;
+                Level level = getLevelAt(mediumLevelStatus.keySet(), yT);
+                if(mediumLevelStatus.get(level) == -1)
+                    return;
+                try {
+                    InGameState.instance.setLevel(Level.load("levels/medium/" + (yT + 1) + ".txt"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startLevel = true;
+                InGameState.instance.levelCat = "medium";
                 InGameState.instance.levelPos = yT + 1;
             }
         }
@@ -155,12 +204,43 @@ public class LevelSelectState extends BasicGameState {
     }
 
     public void setScore(int cat, int pos, int score) {
-        if (cat == 0) {
-            Level level = getLevelAt(introLevelStatus.keySet(), pos);
-            introLevelStatus.put(level, score);
-        }else if(cat == 1){
-            Level level = getLevelAt(easyLevelStatus.keySet(), pos);
-            easyLevelStatus.put(level, score);
+        if(score == 0){
+            if (cat == 0) {
+                Level level = getLevelAt(introLevelStatus.keySet(), pos);
+                if(level == null)
+                    return;
+                int cScore = introLevelStatus.get(level);
+                if(cScore == -1){
+                    introLevelStatus.put(level, score);
+                }
+            } else if (cat == 1) {
+                Level level = getLevelAt(easyLevelStatus.keySet(), pos);
+                if(level == null)
+                    return;
+                int cScore = easyLevelStatus.get(level);
+                if(cScore == -1){
+                    easyLevelStatus.put(level, score);
+                }
+            } else if (cat == 2) {
+                Level level = getLevelAt(mediumLevelStatus.keySet(), pos);
+                if(level == null)
+                    return;
+                int cScore = mediumLevelStatus.get(level);
+                if(cScore == -1){
+                    mediumLevelStatus.put(level, score);
+                }
+            }
+        }else {
+            if (cat == 0) {
+                Level level = getLevelAt(introLevelStatus.keySet(), pos);
+                introLevelStatus.put(level, score);
+            } else if (cat == 1) {
+                Level level = getLevelAt(easyLevelStatus.keySet(), pos);
+                easyLevelStatus.put(level, score);
+            } else if (cat == 2) {
+                Level level = getLevelAt(mediumLevelStatus.keySet(), pos);
+                mediumLevelStatus.put(level, score);
+            }
         }
     }
 

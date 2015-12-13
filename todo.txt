@@ -22,9 +22,6 @@
     - Move counter doesn't increase for a illegal move/
     - Sound effect when an illegal move is attempted
 
-- Timer
-    - Star rating combines time taken with the moves taken
-
 - Level select screen
     - Unlock two levels at a time so you can skip a difficult one
 - Hints?
@@ -74,4 +71,4 @@ Sound
     - Unlocks as well
 - Unlock all button for people who just want to play random levels?
 
-- Level select only works for intro levels, needs to work for all types
+- Level select only works for intro levels, needs to work for all types/
