@@ -4,8 +4,10 @@ import me.jack.LD34.Level.Level;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class LevelSelectState extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         LevelSelectState.instance = this;
+        SoundEngine.getInstance().addSound("locked",new Sound("res/Sound/locked.wav"));
         File introLevels = new File("levels/intro/");
         File easyLevels = new File("levels/easy/");
         File mediumLevels = new File("levels/medium/");
@@ -143,8 +146,10 @@ public class LevelSelectState extends BasicGameState {
             if (x > 8 && y > 45 && x < 92 && y < 195) {
                 int yT = (y - 45) / 30;
                 Level level = getLevelAt(introLevelStatus.keySet(), yT);
-                if(introLevelStatus.get(level) == -1)
+                if(introLevelStatus.get(level) == -1) {
+                    SoundEngine.getInstance().play("locked");
                     return;
+                }
                 try {
                     InGameState.instance.setLevel(Level.load("levels/intro/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {
@@ -158,8 +163,10 @@ public class LevelSelectState extends BasicGameState {
             if (x > 120 && y > 45 && x < 92+158 && y < 195) {
                 int yT = (y - 45) / 30;
                 Level level = getLevelAt(easyLevelStatus.keySet(), yT);
-                if(easyLevelStatus.get(level) == -1)
+                if(easyLevelStatus.get(level) == -1){
+                    SoundEngine.getInstance().play("locked");
                     return;
+                }
                 try {
                     InGameState.instance.setLevel(Level.load("levels/easy/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {
@@ -173,8 +180,10 @@ public class LevelSelectState extends BasicGameState {
             if (x > 248 && y > 45 && x < 92+158 + 158 && y < 195) {
                 int yT = (y - 45) / 30;
                 Level level = getLevelAt(mediumLevelStatus.keySet(), yT);
-                if(mediumLevelStatus.get(level) == -1)
+                if(mediumLevelStatus.get(level) == -1){
+                    SoundEngine.getInstance().play("locked");
                     return;
+                }
                 try {
                     InGameState.instance.setLevel(Level.load("levels/medium/" + (yT + 1) + ".txt"));
                 } catch (IOException e) {

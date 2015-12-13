@@ -2,6 +2,8 @@ package me.jack.LD34.Level;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Sound;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 import java.awt.*;
 
@@ -60,6 +62,7 @@ public class Player {
                     movingTo = null;
                     fling = false;
                     fDir = -1;
+                    SoundEngine.getInstance().play("badmove");
                 }
             } else if (tX < x) {
                 if(level.canMove(x-2,y,x,y))
@@ -69,6 +72,7 @@ public class Player {
                     movingTo = null;
                     fling = false;
                     fDir = -1;
+                    SoundEngine.getInstance().play("badmove");
                 }
             } else if (tY > y) {
                 if(level.canMove(x,y+2,x,y))
@@ -78,6 +82,7 @@ public class Player {
                     movingTo = null;
                     fling = false;
                     fDir = -1;
+                    SoundEngine.getInstance().play("badmove");
                 }
             } else {
                 if(level.canMove(x,y-2,x,y))
@@ -87,6 +92,7 @@ public class Player {
                     movingTo = null;
                     fling = false;
                     fDir = -1;
+                    SoundEngine.getInstance().play("badmove");
                 }
             }
 

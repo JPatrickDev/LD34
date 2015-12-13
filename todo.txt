@@ -45,10 +45,14 @@ Art for everything
 
 Sound
 - Movement
-- Can't move
-- TP
-- Fling
-- Level complete
+    -   Might be annoying
+- Can't move/
+- TP/
+- Fling/
+- Level complete/
+- Moving a moveable
+- Selecting a locked level/
+
 
 4 level categories
 -Intro
@@ -73,3 +77,5 @@ Sound
 - Unlock all button for people who just want to play random levels?
 
 - Level select only works for intro levels, needs to work for all types/
+
+- One image for each direction,flipped in code

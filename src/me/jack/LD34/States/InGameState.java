@@ -11,6 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import uk.co.jdpatrick.JEngine.Image.ImageUtil;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 import javax.swing.*;
 
@@ -29,6 +30,7 @@ public class InGameState extends BasicGameState {
     String levelCat;
 
     public static InGameState instance;
+
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         InGameState.instance = this;
@@ -37,6 +39,12 @@ public class InGameState extends BasicGameState {
         buttons[1] = ImageUtil.loadImage("res/downbutton.png");
         buttons[2] = ImageUtil.loadImage("res/leftbutton.png");
         buttons[3] = ImageUtil.loadImage("res/rightbutton.png");
+
+        SoundEngine.getInstance().addSound("badmove", new Sound("res/Sound/badmove.wav"));
+        SoundEngine.getInstance().addSound("tp", new Sound("res/Sound/tp.wav"));
+        SoundEngine.getInstance().addSound("fling",new Sound("res/Sound/fling.wav"));
+        SoundEngine.getInstance().addSound("end",new Sound("res/Sound/end.wav"));
+        SoundEngine.getInstance().addSound("start",new Sound("res/Sound/start.wav"));
     }
 
 
@@ -49,7 +57,7 @@ public class InGameState extends BasicGameState {
         levelOver = false;
         if (level == null && !backToLevelSelect)
             nextLevel();
-        if(backToLevelSelect)
+        if (backToLevelSelect)
             game.enterState(3);
     }
 
@@ -59,13 +67,14 @@ public class InGameState extends BasicGameState {
 
 
     boolean backToLevelSelect = false;
+
     public void nextLevel() {
         System.out.println("Loading: " + (levelPos + 1));
         levelPos++;
         try {
-            level = Level.load("levels/" + levelCat + "/" +  levelPos + ".txt");
+            level = Level.load("levels/" + levelCat + "/" + levelPos + ".txt");
         } catch (FileNotFoundException e) {
-           backToLevelSelect = true;
+            backToLevelSelect = true;
             return;
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,8 +94,8 @@ public class InGameState extends BasicGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if(key == Keyboard.KEY_ESCAPE){
-           backToLevelSelect = true;
+        if (key == Keyboard.KEY_ESCAPE) {
+            backToLevelSelect = true;
         }
     }
 
@@ -110,7 +119,7 @@ public class InGameState extends BasicGameState {
         g.setColor(Color.white);
         g.drawString("Moves: " + level.moves, 0, 400 - 80);
         g.drawString("Level: " + levelPos, 300, 400 - 80);
-        g.drawString("Cat: " + levelCat,300,400-60);
+        g.drawString("Cat: " + levelCat, 300, 400 - 60);
     }
 
     @Override
@@ -127,12 +136,14 @@ public class InGameState extends BasicGameState {
                 return;
             if (currentMove.getUPDOWN() == 0) {
                 if (level.player.getY() - Tile.tileSize < 0) {
+                    SoundEngine.getInstance().play("badmove");
                     return;
                 }
                 //    level.moves++;
                 level.player.moveTo(level.player.getX(), level.player.getY() - Tile.tileSize);
             } else {
                 if ((level.player.getY() + Tile.tileSize) / Tile.tileSize > level.d - 1) {
+                    SoundEngine.getInstance().play("badmove");
                     return;
                 }
                 level.player.moveTo(level.player.getX(), level.player.getY() + Tile.tileSize);
@@ -143,12 +154,14 @@ public class InGameState extends BasicGameState {
                 return;
             if (currentMove.getLEFTRIGHT() == 0) {
                 if (level.player.getX() - Tile.tileSize < 0) {
+                    SoundEngine.getInstance().play("badmove");
                     return;
                 }
                 level.player.moveTo(level.player.getX() - Tile.tileSize, level.player.getY());
                 //   level.moves++;
             } else {
                 if ((level.player.getX() + Tile.tileSize) / Tile.tileSize > level.d - 1) {
+                    SoundEngine.getInstance().play("badmove");
                     return;
                 }
                 //level.moves++;
@@ -166,13 +179,13 @@ public class InGameState extends BasicGameState {
                 LevelEndState.movesTaken = level.moves;
                 LevelEndState.minMoves = level.minMoves;
                 LevelEndState.state = this;
-                LevelEndState.pos = levelPos-1;
+                LevelEndState.pos = levelPos - 1;
                 LevelEndState.cat = levelCat;
                 level = null;
                 stateBasedGame.enterState(2);
             }
         }
-        if(backToLevelSelect){
+        if (backToLevelSelect) {
             stateBasedGame.enterState(3);
             backToLevelSelect = false;
         }

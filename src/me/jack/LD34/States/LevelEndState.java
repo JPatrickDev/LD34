@@ -4,6 +4,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import uk.co.jdpatrick.JEngine.Image.ImageUtil;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 /**
  * Created by Jack on 12/12/2015.
@@ -27,7 +28,7 @@ public class LevelEndState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
-        System.out.println("Entered levelend");
+
         if(minMoves > movesTaken)
             minMoves = movesTaken;
         if (movesTaken <= minMoves) {
@@ -67,6 +68,7 @@ public class LevelEndState extends BasicGameState {
         graphics.setColor(Color.white);
         graphics.drawString("Moves taken: " + movesTaken, 140, 168 + 68);
         graphics.drawString("Minimum: " + minMoves, 154, 168+68+16);
+        graphics.drawString("Click to continue...",120,168+68+32);
 
 
     }

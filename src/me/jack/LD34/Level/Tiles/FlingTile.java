@@ -9,6 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SpriteSheet;
 import uk.co.jdpatrick.JEngine.Image.ImageUtil;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 /**
  * Created by Jack on 12/12/2015.
@@ -47,7 +48,7 @@ public class FlingTile extends Tile {
 
     @Override
     public void steppedOn(Level level) {
-        System.out.println("FDir: " + direction);
+        SoundEngine.getInstance().play("fling");
         level.player.fling(direction);
     }
 }

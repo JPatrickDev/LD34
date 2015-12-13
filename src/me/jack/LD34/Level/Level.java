@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.w3c.dom.css.Rect;
 import uk.co.jdpatrick.JEngine.Image.ImageUtil;
+import uk.co.jdpatrick.JEngine.Sound.SoundEngine;
 
 
 import java.awt.*;
@@ -85,6 +86,7 @@ public class Level {
         if (player.getX() / Tile.tileSize == end.x && player.getY() / Tile.tileSize == end.y) {
            // parent.nextLevel();
             parent.levelOver();
+            SoundEngine.getInstance().play("end");
         }
         for (MoveableTile t : moveableTiles)
             t.update(this);
@@ -217,5 +219,6 @@ public class Level {
     public void tpPlayer(Point target) {
         player.setX(target.x * Tile.tileSize);
         player.setY(target.y * Tile.tileSize);
+        SoundEngine.getInstance().play("tp");
     }
 }
