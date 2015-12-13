@@ -35,7 +35,7 @@ public class FlingTile extends Tile {
                 for (int y = 0; y != animSheet.getVerticalCount(); y++) {
                     Image sprite = animSheet.getSprite(x, y);
                     sprite.rotate(rot);
-                    anim.addFrame(sprite, 20);
+                    anim.addFrame(sprite, 10);
                 }
             }
     }
