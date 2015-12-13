@@ -69,3 +69,9 @@ Sound
     - Tutorial page introducing each tile type
     - Explain the controls
         - Explain how to reset the level as it is likely you will get stuck at some point
+
+- Stars are pesistance between restarts
+    - Unlocks as well
+- Unlock all button for people who just want to play random levels?
+
+- Level select only works for intro levels, needs to work for all types

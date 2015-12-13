@@ -11,7 +11,8 @@ import uk.co.jdpatrick.JEngine.Image.ImageUtil;
 public class LevelEndState extends BasicGameState {
 
 
-    public static int movesTaken, minMoves, timeTaken;
+    public static int movesTaken, minMoves, timeTaken,pos;
+    public static String cat;
 
     private int stars = 0;
 
@@ -26,6 +27,7 @@ public class LevelEndState extends BasicGameState {
 
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        System.out.println("Entered levelend");
         if(minMoves > movesTaken)
             minMoves = movesTaken;
         if (movesTaken <= minMoves) {
@@ -37,6 +39,8 @@ public class LevelEndState extends BasicGameState {
             } else
                 stars = 1;
         }
+
+        LevelSelectState.instance.setScore(0,pos,stars);
         next = false;
     }
 

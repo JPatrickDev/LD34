@@ -25,9 +25,12 @@ public class InGameState extends BasicGameState {
     Level level;
 
     int levelPos = 0;
+    String levelCat;
 
+    public static InGameState instance;
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        InGameState.instance = this;
         Tile.init();
         buttons[0] = ImageUtil.loadImage("res/upbutton.png");
         buttons[1] = ImageUtil.loadImage("res/downbutton.png");
@@ -38,25 +41,31 @@ public class InGameState extends BasicGameState {
 
     Image[] buttons = new Image[4];
     boolean levelOver = false;
+
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
         levelOver = false;
-        nextLevel();
+        if (level == null && !backToLevelSelect)
+            nextLevel();
+        if(backToLevelSelect)
+            game.enterState(3);
     }
 
-    public void levelOver(){
+    public void levelOver() {
         levelOver = true;
     }
 
+
+    boolean backToLevelSelect = false;
     public void nextLevel() {
-        System.out.println("Loading: " + (levelPos+1));
+        System.out.println("Loading: " + (levelPos + 1));
         levelPos++;
         try {
-            level = Level.load("levels/intro/" + levelPos + ".txt");
+            level = Level.load("levels/" + levelCat + "/" +  levelPos + ".txt");
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null,"Level " + levelPos + " not found, exiting");
-            System.exit(0);
+           backToLevelSelect = true;
+            return;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,20 +86,20 @@ public class InGameState extends BasicGameState {
         int y = 260;
         AllowedMovementType currentMove = level.currentMove();
         g.setColor(Color.black);
-        if(currentMove == AllowedMovementType.NONE){
+        if (currentMove == AllowedMovementType.NONE) {
             g.drawString("-", 64, y + 64);
             g.drawString("-", 272 + 64, y + 64);
-        }else {
-            g.drawImage(buttons[currentMove.getUPDOWN()],0,400-64);
-            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2],96,400-64);
+        } else {
+            g.drawImage(buttons[currentMove.getUPDOWN()], 0, 400 - 64);
+            g.drawImage(buttons[currentMove.getLEFTRIGHT() + 2], 96, 400 - 64);
             if (upDown == null) {
-                upDown = new Rectangle(0,400-64, 64, 64);
-                leftRight = new Rectangle(96,400-64,64,64);
+                upDown = new Rectangle(0, 400 - 64, 64, 64);
+                leftRight = new Rectangle(96, 400 - 64, 64, 64);
             }
         }
         g.setColor(Color.white);
-        g.drawString("Moves: " + level.moves,0,400-80);
-        g.drawString("Level: " + levelPos,300,400-80);
+        g.drawString("Moves: " + level.moves, 0, 400 - 80);
+        g.drawString("Level: " + levelPos, 300, 400 - 80);
     }
 
     @Override
@@ -103,36 +112,36 @@ public class InGameState extends BasicGameState {
         AllowedMovementType currentMove = level.currentMove();
 
         if (upDown.contains(x, y)) {
-            if(level.player.state != 0)
+            if (level.player.state != 0)
                 return;
             if (currentMove.getUPDOWN() == 0) {
-                if(level.player.getY() - Tile.tileSize <0){
+                if (level.player.getY() - Tile.tileSize < 0) {
                     return;
                 }
-            //    level.moves++;
-                level.player.moveTo(level.player.getX(),level.player.getY()-Tile.tileSize);
+                //    level.moves++;
+                level.player.moveTo(level.player.getX(), level.player.getY() - Tile.tileSize);
             } else {
-                if((level.player.getY() + Tile.tileSize)/Tile.tileSize > level.d-1){
+                if ((level.player.getY() + Tile.tileSize) / Tile.tileSize > level.d - 1) {
                     return;
                 }
-                level.player.moveTo(level.player.getX(),level.player.getY()+Tile.tileSize);
-             //   level.moves++;
+                level.player.moveTo(level.player.getX(), level.player.getY() + Tile.tileSize);
+                //   level.moves++;
             }
         } else if (leftRight.contains(x, y)) {
-            if(level.player.state != 0)
+            if (level.player.state != 0)
                 return;
             if (currentMove.getLEFTRIGHT() == 0) {
-                if(level.player.getX() - Tile.tileSize <0){
+                if (level.player.getX() - Tile.tileSize < 0) {
                     return;
                 }
-                level.player.moveTo(level.player.getX()-Tile.tileSize,level.player.getY());
-             //   level.moves++;
+                level.player.moveTo(level.player.getX() - Tile.tileSize, level.player.getY());
+                //   level.moves++;
             } else {
-                if((level.player.getX() + Tile.tileSize)/Tile.tileSize > level.d-1){
+                if ((level.player.getX() + Tile.tileSize) / Tile.tileSize > level.d - 1) {
                     return;
                 }
                 //level.moves++;
-                level.player.moveTo(level.player.getX()+Tile.tileSize,level.player.getY());
+                level.player.moveTo(level.player.getX() + Tile.tileSize, level.player.getY());
             }
         }
 
@@ -142,17 +151,28 @@ public class InGameState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         if (level != null) {
             level.update(this);
-            if(levelOver){
+            if (levelOver) {
                 LevelEndState.movesTaken = level.moves;
-                LevelEndState.minMoves =level.minMoves;
+                LevelEndState.minMoves = level.minMoves;
                 LevelEndState.state = this;
+                LevelEndState.pos = levelPos-1;
+                LevelEndState.cat = levelCat;
+                level = null;
                 stateBasedGame.enterState(2);
             }
+        }
+        if(backToLevelSelect){
+            stateBasedGame.enterState(3);
+            backToLevelSelect = false;
         }
     }
 
     @Override
     public int getID() {
         return 1;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
