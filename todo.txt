@@ -24,7 +24,7 @@
 
 - Level select screen
     - Unlock two levels at a time so you can skip a difficult one/
-        - Unlock the first two of each cat at the start
+        - Unlock the first two of each cat at the start/
 - Hints?
     - Hint coins or something
         - Highlights part of the path
@@ -36,7 +36,7 @@
 
 Art for everything
 - Buttons/
-- Player
+- Player/
 - Better tile art
     - Animated
         -Fling/
@@ -66,7 +66,7 @@ Sound
     - Basic,Fling,TP and Moveable
 
 
--Level loading almost certainly won't work with the files inside the jar, needs to work properly
+-Level loading almost certainly won't work with the files inside the jar, needs to work properly/
 
 - Main menu
     - Tutorial page introducing each tile type
