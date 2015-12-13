@@ -38,7 +38,8 @@ Art for everything
 - Player
 - Better tile art
     - Animated
-        -Fling
+        -Fling/
+            - Might need improving if have the time
         -TP Tiles/
 - Walls
 
