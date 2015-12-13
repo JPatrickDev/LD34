@@ -171,7 +171,11 @@ public class Level {
                     break;
                 case TP:
                     t = new TPTile(new Point(Integer.parseInt(split[2]), Integer.parseInt(split[3])), Color.decode(split[4]));
-                    break;
+                    try{
+                        int ii = Integer.parseInt(split[5]);
+                        if(ii == 1)
+                            level.moveableTiles.add(new MoveableTile(x*Tile.tileSize,y*Tile.tileSize));
+                    }catch(Exception e){}break;
                 case TPTARGET:
                     t = new TPTargetTile(AllowedMovementType.values()[move], Color.decode(split[2]));
                     break;
